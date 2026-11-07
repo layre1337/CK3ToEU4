@@ -1,6 +1,9 @@
 #ifndef CK3_CONFEDERATION_H
 #define CK3_CONFEDERATION_H
 #include "Parser.h"
+#include <map>
+#include <optional>
+#include <set>
 extern commonItems::Color::Factory laFabricaDeColor;
 
 namespace CK3
@@ -31,6 +34,7 @@ class Confederation: commonItems::parser
 	std::optional<commonItems::Color> color;
 	std::optional<std::pair<long long, std::shared_ptr<CoatOfArms>>> coat;
 	std::map<long long, std::shared_ptr<Character>> members;
+	std::set<long long> houseIDs;
 };
 } // namespace CK3
 

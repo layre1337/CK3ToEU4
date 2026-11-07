@@ -105,6 +105,7 @@ class World: commonItems::parser
 	LandedTitles landedTitles;
 	Mods mods;
 	Flags flags;
+	std::map<long long, long long> riteToFaith; // CK3 1.20: rite ID -> faith ID
 	CountyDetails countyDetails;
 	Cultures cultures;
 	HouseNameScraper houseNameScraper;

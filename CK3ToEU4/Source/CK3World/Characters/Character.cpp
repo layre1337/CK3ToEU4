@@ -32,6 +32,11 @@ void CK3::Character::registerKeys()
 		if (faith->first == 4294967295)
 			faith.reset();
 	});
+	registerKeyword("rite", [this](const std::string& unused, std::istream& theStream) {
+		const auto riteID = commonItems::singleLlong(theStream).getLlong();
+		if (riteID != 4294967295)
+			rite = riteID;
+	});
 	registerKeyword("dynasty_house", [this](const std::string& unused, std::istream& theStream) {
 		house = std::pair(commonItems::singleLlong(theStream).getLlong(), nullptr);
 	});

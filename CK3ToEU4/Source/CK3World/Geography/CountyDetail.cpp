@@ -25,5 +25,10 @@ void CK3::CountyDetail::registerKeys()
 		if (faith.first == 4294967295)
 			faith.first = 0;
 	});
+	registerKeyword("rite", [this](const std::string& unused, std::istream& theStream) {
+		const auto riteID = commonItems::singleLlong(theStream).getLlong();
+		if (riteID != 4294967295)
+			rite = riteID;
+	});
 	registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
 }

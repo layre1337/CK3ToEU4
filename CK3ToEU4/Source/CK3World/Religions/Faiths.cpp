@@ -18,6 +18,11 @@ void CK3::Faiths::registerKeys()
 		auto newFaith = std::make_shared<Faith>(theStream, std::stoll(faithID));
 		faiths.insert(std::pair(newFaith->getID(), newFaith));
 	});
+	// CK3 1.20: top-level "faiths" block wraps the actual entries in "database".
+	registerKeyword("database", [this](const std::string& unused, std::istream& theStream) {
+		const auto& wrapped = Faiths(theStream).getFaiths();
+		faiths.insert(wrapped.begin(), wrapped.end());
+	});
 	registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
 }
 

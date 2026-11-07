@@ -16,6 +16,11 @@ void CK3::Confederation::registerKeys()
 		for (const auto& memberID: memberIDs)
 			members.emplace(memberID, nullptr);
 	});
+	registerKeyword("houses", [this](std::istream& theStream) {
+		// CK3 1.20: confederation members are houses; IDs are not characters, so keep them separate from `members`.
+		for (const auto& houseID: commonItems::getLlongs(theStream))
+			houseIDs.emplace(houseID);
+	});
 	registerKeyword("name", [this](std::istream& theStream) {
 		name = commonItems::getString(theStream);
 	});

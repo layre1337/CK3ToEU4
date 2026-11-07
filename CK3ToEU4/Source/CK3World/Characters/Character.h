@@ -3,6 +3,9 @@
 #include "CharacterDomain.h"
 #include "Date.h"
 #include "Parser.h"
+#include <map>
+#include <optional>
+#include <set>
 
 namespace CK3
 {
@@ -55,6 +58,14 @@ class Character: commonItems::parser
 
 	void loadCulture(const std::pair<long long, std::shared_ptr<Culture>>& theCulture) { culture = theCulture; }
 	void loadFaith(const std::pair<long long, std::shared_ptr<Faith>>& theFaith) { faith = theFaith; }
+	// CK3 1.20: characters reference a rite, and the rite knows its faith.
+	void resolveRite(const std::map<long long, long long>& riteToFaith)
+	{
+		if (faith || !rite)
+			return;
+		if (const auto& itr = riteToFaith.find(*rite); itr != riteToFaith.end())
+			faith = std::pair(itr->second, nullptr);
+	}
 	void loadHouse(const std::pair<long long, std::shared_ptr<House>>& theHouse) { house = theHouse; }
 	void loadRealmCapital(const std::pair<long long, std::shared_ptr<Title>>& theRealmCapital) { characterDomain->loadRealmCapital(theRealmCapital); }
 	void loadDomain(const std::vector<std::pair<long long, std::shared_ptr<Title>>>& theDomain) { characterDomain->loadDomain(theDomain); }
@@ -93,6 +104,7 @@ class Character: commonItems::parser
 
 	std::optional<std::pair<long long, std::shared_ptr<Culture>>> culture;
 	std::optional<std::pair<long long, std::shared_ptr<Faith>>> faith;
+	std::optional<long long> rite;
 	std::optional<std::pair<long long, std::shared_ptr<Character>>> employer;
 	std::optional<std::pair<long long, std::shared_ptr<Character>>> spouse;
 	std::optional<std::pair<long long, std::shared_ptr<Character>>> suzerain; // Tributary overlord

@@ -201,8 +201,39 @@ void CK3::World::registerKeys(const std::shared_ptr<Configuration>& theConfigura
 	registerKeyword("religion", [this](const std::string& unused, std::istream& theStream) {
 		Log(LogLevel::Info) << "-> Loading religions.";
 		religions = Religions(theStream);
-		faiths = religions.getFaiths(); // Do not access faiths in religions after this - there are none and will crash.
+		if (!religions.getFaiths().getFaiths().empty())
+			faiths = religions.getFaiths(); // Do not access faiths in religions after this - there are none and will crash.
 		Log(LogLevel::Info) << "<> Loaded " << religions.getReligions().size() << " religions and " << faiths.getFaiths().size() << " faiths.";
+	});
+	registerKeyword("rites", [this](const std::string& unused, std::istream& theStream) {
+		// CK3 1.20: rites={ database={ <id>={ rite_type=... faith=<id> ... } } }
+		Log(LogLevel::Info) << "-> Loading rites.";
+		commonItems::parser ritesParser;
+		ritesParser.registerKeyword("database", [this](const std::string& unused2, std::istream& dbStream) {
+			commonItems::parser dbParser;
+			dbParser.registerRegex(R"(\d+)", [this](const std::string& riteID, std::istream& riteStream) {
+				long long faithID = -1;
+				commonItems::parser riteParser;
+				riteParser.registerKeyword("faith", [&faithID](const std::string& unused3, std::istream& faithStream) {
+					faithID = commonItems::singleLlong(faithStream).getLlong();
+				});
+				riteParser.registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
+				riteParser.parseStream(riteStream);
+				if (faithID >= 0 && faithID != 4294967295)
+					riteToFaith.emplace(std::stoll(riteID), faithID);
+			});
+			dbParser.registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
+			dbParser.parseStream(dbStream);
+		});
+		ritesParser.registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
+		ritesParser.parseStream(theStream);
+		Log(LogLevel::Info) << "<> Loaded " << riteToFaith.size() << " rites.";
+	});
+	registerKeyword("faiths", [this](const std::string& unused, std::istream& theStream) {
+		// CK3 1.20 stores faiths in a separate top-level block (faiths={ database={...} }).
+		Log(LogLevel::Info) << "-> Loading faiths.";
+		faiths = Faiths(theStream);
+		Log(LogLevel::Info) << "<> Loaded " << faiths.getFaiths().size() << " faiths.";
 	});
 	registerKeyword("coat_of_arms", [this](const std::string& unused, std::istream& theStream) {
 		Log(LogLevel::Info) << "-> Loading garments of limbs.";
@@ -404,6 +435,14 @@ void CK3::World::crosslinkDatabases()
 	countyDetails.linkCultures(cultures);
 	Log(LogLevel::Info) << "-> Loading Cultures into Characters.";
 	characters.linkCultures(cultures);
+	if (!riteToFaith.empty())
+	{
+		Log(LogLevel::Info) << "-> Resolving Rites into Faiths.";
+		for (const auto& countyDetail: countyDetails.getCountyDetails() | std::views::values)
+			countyDetail->resolveRite(riteToFaith);
+		for (const auto& character: characters.getCharacters() | std::views::values)
+			character->resolveRite(riteToFaith);
+	}
 	Log(LogLevel::Info) << "-> Loading Faiths into Counties.";
 	countyDetails.linkFaiths(faiths);
 	Log(LogLevel::Info) << "-> Loading Faiths into Characters.";
