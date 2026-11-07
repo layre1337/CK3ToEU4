@@ -20,7 +20,7 @@ void CK3::Faiths::registerKeys()
 	});
 	// CK3 1.20: top-level "faiths" block wraps the actual entries in "database".
 	registerKeyword("database", [this](const std::string& unused, std::istream& theStream) {
-		const auto& wrapped = Faiths(theStream).getFaiths();
+		const auto wrapped = Faiths(theStream).getFaiths(); // copy: the temporary Faiths dies at the end of this statement
 		faiths.insert(wrapped.begin(), wrapped.end());
 	});
 	registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
