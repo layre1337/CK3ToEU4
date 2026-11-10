@@ -911,9 +911,15 @@ doctrine_consanguinity_cousins = {
 }
 
 doctrine_consanguinity_aunt_nephew_and_uncle_niece = {
+	country = {
+		heir_chance = 0.25
+	}
 }
 
 doctrine_consanguinity_unrestricted = {
+	country = {
+		heir_chance = 0.5
+	}
 }
 ##Pluralism
 doctrine_pluralism_fundamentalist = {
@@ -927,6 +933,9 @@ doctrine_pluralism_fundamentalist = {
 }
 
 doctrine_pluralism_righteous = {
+	country = {
+		tolerance_own = 1
+	}
 }
 
 doctrine_pluralism_pluralistic = {
@@ -953,12 +962,19 @@ doctrine_monotheist = {
 }
 
 doctrine_scriptural = {
+	country = {
+		technology_cost = -0.05
+	}
 }
 doctrine_mythic_literary = {
+	country = {
+		idea_cost = -0.05
+	}
 }
 doctrine_oral_storytelling = {
-}
-doctrine_oral_storytelling = {
+	country = {
+		culture_conversion_cost = -0.1
+	}
 }
 
 doctrine_monasticism_encouraged = {
@@ -992,40 +1008,88 @@ doctrine_monasticism_forbidden = {
 }
 
 doctrine_sacraments_central = {
+	country = {
+		religious_unity = 0.15
+	}
 }
 doctrine_sacraments_absent = {
 }
 ##Theocracy
 doctrine_theocracy_temporal = {
+	country = {
+		tolerance_own = 1
+	}
 }
 
 doctrine_theocracy_lay_clergy = {
+	country = {
+		missionary_maintenance_cost = -0.2
+	}
 }
 ##Head of Faith
 doctrine_no_head = {
+	country = {
+		republican_tradition = 0.25
+	}
 }
 
 doctrine_spiritual_head = {
+	country = {
+		improve_relation_modifier = 0.1
+	}
 }
 
 doctrine_temporal_head = {
+	country = {
+		legitimacy = 0.25
+	}
 }
 ##Clerical Function
 doctrine_clerical_function_taxation = {
+	country = {
+		global_tax_modifier = 0.05
+	}
+	country_as_secondary = {
+		global_tax_modifier = 0.025
+	}
 }
 
 doctrine_clerical_function_alms_and_pacification = {
+	country = {
+		global_unrest = -1
+	}
+	country_as_secondary = {
+		global_unrest = -0.5
+	}
 }
 
 doctrine_clerical_function_recruitment = {
+	country = {
+		land_morale = 0.05
+	}
+	country_as_secondary = {
+		discipline = 0.025
+	}
 }
 doctrine_pilgrimage_encouraged = {
+	country = {
+		prestige = 0.25
+	}
 }
 doctrine_pilgrimage_mandatory = {
+	country = {
+		religious_unity = 0.15
+	}
 }
 doctrine_pilgrimage_mandatory_hajj = {
+	country = {
+		religious_unity = 0.15
+	}
 }
 doctrine_pilgrimage_local_rites = {
+	province = {
+		local_missionary_strength = 0.01
+	}
 }
 doctrine_temple_authority = {
 	tolerance_own = 2
@@ -1044,9 +1108,15 @@ doctrine_clerical_gender_male_only = {
 }
 
 doctrine_clerical_gender_female_only = {
+	country = {
+		female_advisor_chance = 0.9
+	}
 }
 
 doctrine_clerical_gender_either = {
+	country = {
+		female_advisor_chance = 0.3
+	}
 }
 ##Clerical Marriage
 doctrine_clerical_marriage_allowed = {
@@ -1056,15 +1126,27 @@ doctrine_clerical_marriage_disallowed = {
 }
 ##Clerical Succession
 doctrine_clerical_succession_temporal_appointment = {
+	country = {
+		stability_cost_modifier = -0.05
+	}
 }
 
 doctrine_clerical_succession_spiritual_appointment = {
+	country = {
+		tolerance_own = 1
+	}
 }
 
 doctrine_clerical_succession_temporal_fixed_appointment = {
+	country = {
+		stability_cost_modifier = -0.05
+	}
 }
 
 doctrine_clerical_succession_spiritual_fixed_appointment = {
+	country = {
+		tolerance_own = 1
+	}
 }
 
 doctrine_clerical_succession_conditional = {
@@ -1439,10 +1521,19 @@ has_jizya_doctrine  = {
 }
 ######### 1.12
 doctrine_funeral_stoic = {
+	country = {
+		war_exhaustion = -0.05
+	}
 }
-doctrine_funeral_bewailment  = {
+doctrine_funeral_bewailment = {
+	country = {
+		religious_unity = 0.15
+	}
 }
-doctrine_funeral_cremation  = {
+doctrine_funeral_cremation = {
+	country = {
+		land_attrition = -0.2
+	}
 }
 doctrine_funeral_sky_burial  = {
 	country = {
@@ -1456,7 +1547,10 @@ doctrine_funeral_sky_burial  = {
 		raze_power_gain = 0.15
 	}
 }
-doctrine_funeral_mummification  = {
+doctrine_funeral_mummification = {
+	country = {
+		monarch_lifespan = 0.1
+	}
 }
 doctrine_family_rites  = {
 	country = {
@@ -2255,5 +2349,25 @@ tenet_khachkar = {
 tenet_khachkar = {
 	country = {
 		defensiveness = 0.15
+	}
+}
+
+### Added for CK3 1.20 (new in the supplied game files)
+tenet_sinitic_syncretism = {
+	country = {
+		tolerance_heretic = 2
+		adm_tech_cost_modifier = -0.05
+	}
+	country_as_secondary = {
+		tolerance_heretic = 1
+	}
+}
+
+special_doctrine_jizya = {
+	country = {
+		global_tax_modifier = 0.1
+	}
+	country_as_secondary = {
+		global_tax_modifier = 0.05
 	}
 }
