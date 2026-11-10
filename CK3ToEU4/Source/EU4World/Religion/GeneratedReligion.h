@@ -24,6 +24,7 @@ struct GeneratedReligion
 	std::string allowedConversion;
 	std::string parent;
 	std::optional<commonItems::Color> color;
+	bool noClergyEstate = false; // CK3 lay clergy: the clergy estate is disabled for this religion
 	int icon = 0;
 	short personalDeityNumber = 0;
 	friend std::ostream& operator<<(std::ostream& output, const GeneratedReligion& religion);

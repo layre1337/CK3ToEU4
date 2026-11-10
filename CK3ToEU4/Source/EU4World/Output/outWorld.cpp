@@ -91,6 +91,7 @@ void EU4::World::output(const commonItems::ConverterVersion& converterVersion,
 
 	Log(LogLevel::Info) << "<- Writing Religions";
 	outputReligions(theConfiguration.getOutputName(), religionMapper.getGeneratedReligions(), religionMapper.getReformedReligions());
+	outputChurchEstate(theConfiguration, religionMapper.getGeneratedReligions());
 
 	Log(LogLevel::Info) << "<- Writing Cultures";
 	outputCultures(theConfiguration.getOutputName());
@@ -180,6 +181,51 @@ void EU4::World::outputCultures(const std::filesystem::path& outputName) const
 	std::ofstream cultureFile("output" / outputName / "common/cultures/!.ZZ-dynamic_cultures.txt");
 	cultureFile << cultureDefinitionsMapper;
 	cultureFile.close();
+}
+
+void EU4::World::outputChurchEstate(const Configuration& theConfiguration, const std::vector<GeneratedReligion>& generatedReligions) const
+{
+	// Religions of faiths with lay clergy have no clergy estate. EU4 decides who gets the estate in the "trigger" of estate_church, so we take the
+	// vanilla file from the user's EU4 install (always matching their game version), and add an exception to its trigger.
+	std::vector<std::string> noClergyReligions;
+	for (const auto& religion: generatedReligions)
+		if (religion.noClergyEstate)
+			noClergyReligions.emplace_back(religion.name);
+	if (noClergyReligions.empty())
+		return;
+
+	std::ifstream input(theConfiguration.getEU4Path() / "common/estates/01_church.txt");
+	if (!input.is_open())
+	{
+		Log(LogLevel::Warning) << "Where is " << theConfiguration.getEU4Path().string() << "/common/estates/01_church.txt?! Clergy estate stays enabled.";
+		return;
+	}
+	std::stringstream inStream;
+	inStream << input.rdbuf();
+	auto estateString = inStream.str();
+	input.close();
+
+	const std::string triggerOpening = "trigger = {";
+	const auto estatePos = estateString.find("estate_church");
+	const auto triggerPos = estatePos == std::string::npos ? std::string::npos : estateString.find(triggerOpening, estatePos);
+	if (triggerPos == std::string::npos)
+	{
+		Log(LogLevel::Warning) << "Could not find the trigger of estate_church in EU4's 01_church.txt. Clergy estate stays enabled.";
+		return;
+	}
+
+	std::string exception = "\n\t\t# CK3ToEU4: faiths with lay clergy have no clergy estate\n\t\tNOT = {\n\t\t\tOR = {";
+	for (const auto& religionName: noClergyReligions)
+		exception += "\n\t\t\t\treligion = " + religionName;
+	exception += "\n\t\t\t}\n\t\t}";
+	estateString.insert(triggerPos + triggerOpening.size(), exception);
+
+	std::ofstream output("output" / theConfiguration.getOutputName() / "common/estates/01_church.txt");
+	if (!output.is_open())
+		throw std::runtime_error("Could not write the clergy estate file! Is the output folder writable?");
+	output << estateString;
+	output.close();
+	Log(LogLevel::Info) << "<> Clergy estate disabled for " << noClergyReligions.size() << " religions with lay clergy.";
 }
 
 void EU4::World::outputReligions(const std::filesystem::path& outputName,

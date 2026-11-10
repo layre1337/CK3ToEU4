@@ -227,8 +227,11 @@ void mappers::ReligionMapper::importCK3Faith(const CK3::Faith& faith,
 
 	short secondaryCount = 0;
 	short countryCount = 0;
+	bool noClergyEstate = false;
 	for (const auto& doctrine: faith.getDoctrines())
 	{
+		if (doctrine == "doctrine_theocracy_lay_clergy")
+			noClergyEstate = true; // no dedicated clergy: this religion has no clergy estate in EU4
 		const auto& match = religionDefinitionMapper.getDefinition(doctrine);
 		if (match)
 		{
@@ -305,6 +308,7 @@ void mappers::ReligionMapper::importCK3Faith(const CK3::Faith& faith,
 									  << " could not be found! Check religion defines in blankmod/output/common/religions! Will appear standalone!";
 	}
 	newReligion.name = faithName;
+	newReligion.noClergyEstate = noClergyEstate;
 
 	generatedReligions.emplace_back(newReligion);
 

@@ -114,6 +114,7 @@ class World
 		 const std::vector<GeneratedReligion>& generatedReligions,
 		 const std::vector<std::string>& reformedReligions) const;
 	void outputCultures(const std::filesystem::path& outputName) const;
+	void outputChurchEstate(const Configuration& theConfiguration, const std::vector<GeneratedReligion>& generatedReligions) const;
 	void outputReligionIcons(const Configuration& theConfiguration, const std::vector<GeneratedReligion>& generatedReligions, const Mods& mods) const;
 	void annexHordes(const std::string& tag,
 		 std::map<std::string, std::vector<std::shared_ptr<Country>>>& hordeDependencies,
