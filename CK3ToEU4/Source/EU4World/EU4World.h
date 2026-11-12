@@ -1,5 +1,6 @@
 #ifndef EU4_WORLD_H
 #define EU4_WORLD_H
+#include "../Mappers/RussianLocMapper/RussianLocMapper.h"
 #include "../CK3World/Cultures/Culture.h"
 #include "../CK3World/World.h"
 #include "../Mappers/AfricanPassesMapper/AfricanPassesMapper.h"
@@ -103,6 +104,7 @@ class World
 	void outputAdvisers(const Configuration& theConfiguration) const;
 	void outputHistoryProvinces(const Configuration& theConfiguration) const;
 	void outputLocalization(const Configuration& theConfiguration, bool invasion) const;
+	void outputRussianStaticLocalization(const Configuration& theConfiguration, const mappers::RussianLocMapper& russianLoc) const;
 	void outputEmperor(const Configuration& theConfiguration, date conversionDate) const;
 	void outputDiplomacy(const Configuration& theConfiguration, const std::vector<std::shared_ptr<Agreement>>& agreements, bool invasion) const;
 	void outputFlags(const Configuration& theConfiguration) const;

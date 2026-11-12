@@ -7,7 +7,9 @@
 #include "OSCompatibilityLayer.h"
 #include <filesystem>
 #include <fstream>
+#include "../../Mappers/RussianLocMapper/RussianLocMapper.h"
 #include <ranges>
+#include <regex>
 
 #include "../../CK3World/Cultures/Culture.h"
 #include "../../Mappers/CultureDefinitionsMapper/CultureDefiniton.h"
@@ -512,6 +514,23 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 		throw std::runtime_error("Error writing localization file! Is the output folder writable?");
 	if (!german.is_open())
 		throw std::runtime_error("Error writing localization file! Is the output folder writable?");
+	// With the Russian localization option the "english" file carries Russian text written in the glyphs of the unofficial Russian
+	// localization mod (EU4 has no Cyrillic). That mod redraws certain characters as Cyrillic letters.
+	const auto russian = theConfiguration.getRussianLocalization();
+	mappers::RussianLocMapper russianLoc;
+	if (russian)
+		russianLoc.loadAlphabet();
+	const auto englishText = [&](const mappers::LocBlock& block) {
+		if (!russian)
+			return locDegrader.degradeString(block.english);
+		return russianLoc.encode(locDegrader.degradeString(block.russian.empty() ? block.english : block.russian, false));
+	};
+	const auto englishPlain = [&](const std::string& text) {
+		if (!russian)
+			return locDegrader.degradeString(text);
+		return russianLoc.encode(locDegrader.degradeString(text, false));
+	};
+
 	english << commonItems::utf8BOM << "l_english:\n"; // write BOM
 	french << commonItems::utf8BOM << "l_french:\n";	// write BOM
 	spanish << commonItems::utf8BOM << "l_spanish:\n"; // write BOM
@@ -521,7 +540,7 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 	{
 		for (const auto& locblock: country.second->getLocalizations())
 		{
-			english << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.english) << "\"\n";
+			english << " " << locblock.first << ":3 \"" << englishText(locblock.second) << "\"\n";
 			french << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.french) << "\"\n";
 			spanish << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.spanish) << "\"\n";
 			german << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.german) << "\"\n";
@@ -530,7 +549,7 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 
 	for (const auto& locblock: religionMapper.getLocalizations())
 	{
-		english << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.english) << "\"\n";
+		english << " " << locblock.first << ":3 \"" << englishText(locblock.second) << "\"\n";
 		french << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.french) << "\"\n";
 		spanish << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.spanish) << "\"\n";
 		german << " " << locblock.first << ":3 \"" << locDegrader.degradeString(locblock.second.german) << "\"\n";
@@ -543,7 +562,7 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 			if (culture->getSourceCulture() && culture->getSourceCulture()->isDynamic() && !culture->getSourceCulture()->isEU4Ready() &&
 				 culture->getSourceCulture()->getLocalizedName())
 			{
-				english << " " << cultureName << ":0 \"" << locDegrader.degradeString(*culture->getSourceCulture()->getLocalizedName()) << "\"\n";
+				english << " " << cultureName << ":0 \"" << englishPlain(*culture->getSourceCulture()->getLocalizedName()) << "\"\n";
 				french << " " << cultureName << ":0 \"" << locDegrader.degradeString(*culture->getSourceCulture()->getLocalizedName()) << "\"\n";
 				spanish << " " << cultureName << ":0 \"" << locDegrader.degradeString(*culture->getSourceCulture()->getLocalizedName()) << "\"\n";
 				german << " " << cultureName << ":0 \"" << locDegrader.degradeString(*culture->getSourceCulture()->getLocalizedName()) << "\"\n";
@@ -552,7 +571,7 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 	// localizations for dynamic nation ideas
 	for (const auto& [idea, locBlock]: dynamicIdeasMapper.getTraditionLocs())
 	{
-		english << " " << idea << ":0 \"" << locBlock.english << "\"\n";
+		english << " " << idea << ":0 \"" << (russian ? englishText(locBlock) : locBlock.english) << "\"\n";
 		french << " " << idea << ":0 \"" << locBlock.french << "\"\n";
 		spanish << " " << idea << ":0 \"" << locBlock.spanish << "\"\n";
 		german << " " << idea << ":0 \"" << locBlock.german << "\"\n";
@@ -563,12 +582,18 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 	std::vector<std::string> fra_ideaText{"Idées", "Traditions", "Ambitions"};
 	std::vector<std::string> spa_ideaText{"Ideas", "tradiciones", "Ambiciones"};
 	std::vector<std::string> ger_ideaText{"Ideen", "Traditionen", "Ambitionen"};
+	// "Идеи", "Традиции", "Амбиции" - written as UTF-8 bytes so the source file encoding doesn't matter.
+	std::vector<std::string> rus_ideaText{"\xD0\x98\xD0\xB4\xD0\xB5\xD0\xB8",
+		 "\xD0\xA2\xD1\x80\xD0\xB0\xD0\xB4\xD0\xB8\xD1\x86\xD0\xB8\xD0\xB8",
+		 "\xD0\x90\xD0\xBC\xD0\xB1\xD0\xB8\xD1\x86\xD0\xB8\xD0\xB8"};
 
 	for (const auto& idea: dynamicNationalIdeas)
 	{
 		for (auto i = 0; i < suffix.size(); i++)
 		{
-			english << " " << idea.getDynamicName() + suffix[i] << ":0 \"" << locDegrader.degradeString(idea.getLocalizedName()) + " " + eng_ideaText[i] << "\"\n";
+			english << " " << idea.getDynamicName() + suffix[i] << ":0 \""
+					<< (russian ? englishPlain(idea.getLocalizedName() + " " + rus_ideaText[i]) : locDegrader.degradeString(idea.getLocalizedName()) + " " + eng_ideaText[i])
+					<< "\"\n";
 			french << " " << idea.getDynamicName() + suffix[i] << ":0 \"" << locDegrader.degradeString(idea.getLocalizedName()) + " " + fra_ideaText[i] << "\"\n";
 			spanish << " " << idea.getDynamicName() + suffix[i] << ":0 \"" << locDegrader.degradeString(idea.getLocalizedName()) + " " + spa_ideaText[i] << "\"\n";
 			german << " " << idea.getDynamicName() + suffix[i] << ":0 \"" << locDegrader.degradeString(idea.getLocalizedName()) + " " + ger_ideaText[i] << "\"\n";
@@ -611,6 +636,77 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 		fs::copy_file("configurables/religions/reformation/roman" / fileName,
 			 "output" / theConfiguration.getOutputName() / "localisation" / fileName,
 			 fs::copy_options::overwrite_existing);
+
+	if (russian)
+		outputRussianStaticLocalization(theConfiguration, russianLoc);
+}
+
+// The converter's own static texts (decisions, missions, events, ideas...) ship in English. Russian translations live in
+// configurables/russian_loc/localisation/**/<name>_l_russian.yml in plain Cyrillic. For every key found there, the matching line of the
+// output <name>_l_english.yml is replaced with the translation, written in the Russian localization mod's glyphs. Untranslated keys stay English.
+void EU4::World::outputRussianStaticLocalization(const Configuration& theConfiguration, const mappers::RussianLocMapper& russianLoc) const
+{
+	const std::filesystem::path sourceRoot = "configurables/russian_loc/localisation";
+	if (!commonItems::DoesFolderExist(sourceRoot))
+		return;
+
+	const std::regex linePattern(R"re(^(\s*)([^\s:#]+):(\d*)\s*"(.*)"\s*(#.*)?$)re");
+	const auto readLines = [](const std::filesystem::path& path) {
+		std::vector<std::string> lines;
+		std::ifstream in(path, std::ios::binary);
+		std::string line;
+		while (std::getline(in, line))
+		{
+			if (!line.empty() && line.back() == '\r')
+				line.pop_back();
+			lines.push_back(line);
+		}
+		if (!lines.empty() && lines.front().starts_with(commonItems::utf8BOM))
+			lines.front().erase(0, std::string(commonItems::utf8BOM).size());
+		return lines;
+	};
+
+	auto translatedFiles = 0;
+	auto translatedKeys = 0;
+	for (const auto& relative: commonItems::GetAllFilesInFolderRecursive(sourceRoot))
+	{
+		const std::filesystem::path relativePath(relative);
+		auto fileName = relativePath.filename().string();
+		const std::string suffix = "_l_russian.yml";
+		if (!fileName.ends_with(suffix))
+			continue;
+		fileName.replace(fileName.size() - suffix.size(), suffix.size(), "_l_english.yml");
+		const auto target = "output" / theConfiguration.getOutputName() / "localisation" / relativePath.parent_path() / fileName;
+		if (!std::filesystem::exists(target))
+		{
+			Log(LogLevel::Warning) << "Russian localization " << relative << " has no matching " << fileName << " in the output mod. Skipping.";
+			continue;
+		}
+
+		std::map<std::string, std::string> translations;
+		for (const auto& line: readLines(sourceRoot / relativePath))
+			if (std::smatch match; std::regex_match(line, match, linePattern))
+				translations[match[2].str()] = match[4].str();
+
+		auto lines = readLines(target);
+		std::ofstream out(target, std::ios::binary | std::ios::trunc);
+		if (!out.is_open())
+			continue;
+		out << commonItems::utf8BOM;
+		for (const auto& line: lines)
+		{
+			std::smatch match;
+			if (std::regex_match(line, match, linePattern) && translations.contains(match[2].str()))
+			{
+				out << match[1].str() << match[2].str() << ":" << match[3].str() << " \"" << russianLoc.encode(translations.at(match[2].str())) << "\"\n";
+				++translatedKeys;
+			}
+			else
+				out << line << "\n";
+		}
+		++translatedFiles;
+	}
+	Log(LogLevel::Info) << "Russian localization: " << translatedKeys << " texts in " << translatedFiles << " files.";
 }
 
 void EU4::World::outputEmperor(const Configuration& theConfiguration, date conversionDate) const

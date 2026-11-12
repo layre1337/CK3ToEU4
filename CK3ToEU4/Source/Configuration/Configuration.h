@@ -99,6 +99,12 @@ class Configuration: commonItems::parser
 		DESTROY = 4
 	};
 
+	enum class RUSSIAN_LOC
+	{
+		DISABLED = 1,
+		ENABLED = 2
+	};
+
 	[[nodiscard]] const auto& getSaveGamePath() const { return SaveGamePath; }
 	[[nodiscard]] const auto& getCK3Path() const { return CK3Path; }
 	[[nodiscard]] const auto& getCK3DocPath() const { return CK3DocPath; }
@@ -121,6 +127,7 @@ class Configuration: commonItems::parser
 	[[nodiscard]] const auto& getDiscoveredBy() const { return discoveredBy; }
 	[[nodiscard]] const auto& getTribalConfederations() const { return tribalConfederations; }
 	[[nodiscard]] const auto& getCelestial() const { return celestial; }
+	[[nodiscard]] bool getRussianLocalization() const { return russianLocalization == RUSSIAN_LOC::ENABLED; }
 
 	void setCraftFlagForPlayerTitle(const std::string& title) { playerTitle = title; }
 
@@ -154,6 +161,7 @@ class Configuration: commonItems::parser
 	DISCOVEREDBY discoveredBy = DISCOVEREDBY::VANILLA;
 	TRIBALCONFEDERATIONS tribalConfederations = TRIBALCONFEDERATIONS::MERGE;
 	CELESTIAL celestial = CELESTIAL::BEIJING;
+	RUSSIAN_LOC russianLocalization = RUSSIAN_LOC::DISABLED;
 
 	std::optional<std::string> playerTitle;
 };

@@ -135,6 +135,11 @@ void Configuration::registerKeys()
 		celestial = CELESTIAL(std::stoi(celestialString.getString()));
 		Log(LogLevel::Info) << "Celestial set to: " << celestialString.getString();
 	});
+	registerKeyword("russian_localization", [this](std::istream& theStream) {
+		const commonItems::singleString russianLocString(theStream);
+		russianLocalization = RUSSIAN_LOC(std::stoi(russianLocString.getString()));
+		Log(LogLevel::Info) << "Russian localization set to: " << russianLocString.getString();
+	});
 	registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
 }
 

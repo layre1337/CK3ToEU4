@@ -365,3 +365,22 @@ option = {
 		tooltip = MODNAMETIP2
 	}
 }
+option = {
+	name = russian_localization
+	displayName = RUSLOC
+	tooltip = RUSLOCTIP
+	radioSelector = {
+		radioOption = {
+			name = 1
+			displayName = RUSLOC1
+			tooltip = RUSLOC1TIP
+			default = true
+		}
+		radioOption = {
+			name = 2
+			displayName = RUSLOC2
+			tooltip = RUSLOC2TIP
+			default = false
+		}
+	}
+}

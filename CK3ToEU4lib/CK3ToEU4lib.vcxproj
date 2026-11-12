@@ -85,6 +85,7 @@
     <ClCompile Include="..\CK3ToEU4\Source\Mappers\IslamOverrideMapper\IslamOverrideMapping.cpp" />
     <ClCompile Include="..\CK3ToEU4\Source\Mappers\LocalizationMapper\LocalizationMapper.cpp" />
     <ClCompile Include="..\CK3ToEU4\Source\Mappers\LocDegraderMapper\LocDegraderMapper.cpp" />
+    <ClCompile Include="..\CK3ToEU4\Source\Mappers\RussianLocMapper\RussianLocMapper.cpp" />
     <ClCompile Include="..\CK3ToEU4\Source\Mappers\LocDegraderMapper\LocDegraderMapping.cpp" />
     <ClCompile Include="..\CK3ToEU4\Source\Mappers\NamedColors\NamedColors.cpp" />
     <ClCompile Include="..\CK3ToEU4\Source\Mappers\PrimaryTagMapper\PrimaryTagCulture.cpp" />
@@ -194,6 +195,7 @@
     <ClInclude Include="..\CK3ToEU4\Source\Mappers\IslamOverrideMapper\IslamOverrideMapping.h" />
     <ClInclude Include="..\CK3ToEU4\Source\Mappers\LocalizationMapper\LocalizationMapper.h" />
     <ClInclude Include="..\CK3ToEU4\Source\Mappers\LocDegraderMapper\LocDegraderMapper.h" />
+    <ClInclude Include="..\CK3ToEU4\Source\Mappers\RussianLocMapper\RussianLocMapper.h" />
     <ClInclude Include="..\CK3ToEU4\Source\Mappers\LocDegraderMapper\LocDegraderMapping.h" />
     <ClInclude Include="..\CK3ToEU4\Source\Mappers\NamedColors\NamedColors.h" />
     <ClInclude Include="..\CK3ToEU4\Source\Mappers\PrimaryTagMapper\PrimaryTagCulture.h" />

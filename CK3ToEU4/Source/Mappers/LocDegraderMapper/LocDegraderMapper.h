@@ -10,7 +10,8 @@ class LocDegraderMapper: commonItems::parser
 	LocDegraderMapper();
 	explicit LocDegraderMapper(std::istream& theStream);
 
-	[[nodiscard]] std::string degradeString(const std::string& inputString) const;
+	// EU4 cannot show Cyrillic, so by default any Cyrillic left in the text is transliterated to Latin (Яков -> Jakov).
+	[[nodiscard]] std::string degradeString(const std::string& inputString, bool transliterateCyrillic = true) const;
 
   private:
 	void registerKeys();

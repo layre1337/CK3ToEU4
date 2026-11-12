@@ -3,6 +3,7 @@
 #include "LocDegraderMapping.h"
 #include "Log.h"
 #include "ParserHelpers.h"
+#include "../RussianLocMapper/RussianLocMapper.h"
 
 mappers::LocDegraderMapper::LocDegraderMapper()
 {
@@ -30,12 +31,14 @@ void mappers::LocDegraderMapper::registerKeys()
 	registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
 }
 
-std::string mappers::LocDegraderMapper::degradeString(const std::string& inputString) const
+std::string mappers::LocDegraderMapper::degradeString(const std::string& inputString, const bool transliterateCyrillic) const
 {
 	std::string toReturn = inputString;
 	for (const auto& [utf8, win1252]: replacements)
 	{
 		toReturn = std::regex_replace(toReturn, std::regex(utf8), win1252);
 	}
+	if (transliterateCyrillic && RussianLocMapper::containsCyrillic(toReturn))
+		toReturn = RussianLocMapper::transliterate(toReturn);
 	return toReturn;
 }
