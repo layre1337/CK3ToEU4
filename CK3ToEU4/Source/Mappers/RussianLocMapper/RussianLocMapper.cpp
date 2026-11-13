@@ -66,67 +66,67 @@ bool isCyrillic(const char32_t cp)
 	return cp >= 0x0400 && cp <= 0x04FF;
 }
 
-// Order matches the alphabet file: А Б В Г Д Е Ё Ж З И Й К Л М Н О П Р С Т У Ф Х Ц Ч Ш Щ Ъ Ы Ь Э Ю Я
-const std::u32string upperAlphabet = U"АБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ";
-const std::u32string lowerAlphabet = U"абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+// Order matches the alphabet file: upper/lower case A..Ya, with Yo after Ye
+const std::u32string upperAlphabet = U"\u0410\u0411\u0412\u0413\u0414\u0415\u0401\u0416\u0417\u0418\u0419\u041A\u041B\u041C\u041D\u041E\u041F\u0420\u0421\u0422\u0423\u0424\u0425\u0426\u0427\u0428\u0429\u042A\u042B\u042C\u042D\u042E\u042F";
+const std::u32string lowerAlphabet = U"\u0430\u0431\u0432\u0433\u0434\u0435\u0451\u0436\u0437\u0438\u0439\u043A\u043B\u043C\u043D\u043E\u043F\u0440\u0441\u0442\u0443\u0444\u0445\u0446\u0447\u0448\u0449\u044A\u044B\u044C\u044D\u044E\u044F";
 
 // Latin form of a lower case letter; the upper case form gets its first letter capitalised.
-const std::map<char32_t, std::string> latin = {{U'а', "a"},
-	 {U'б', "b"},
-	 {U'в', "v"},
-	 {U'г', "g"},
-	 {U'д', "d"},
-	 {U'е', "e"},
-	 {U'ё', "e"},
-	 {U'ж', "zh"},
-	 {U'з', "z"},
-	 {U'и', "i"},
-	 {U'й', "j"},
-	 {U'к', "k"},
-	 {U'л', "l"},
-	 {U'м', "m"},
-	 {U'н', "n"},
-	 {U'о', "o"},
-	 {U'п', "p"},
-	 {U'р', "r"},
-	 {U'с', "s"},
-	 {U'т', "t"},
-	 {U'у', "u"},
-	 {U'ф', "f"},
-	 {U'х', "h"},
-	 {U'ц', "c"},
-	 {U'ч', "ch"},
-	 {U'ш', "sh"},
-	 {U'щ', "sch"},
-	 {U'ъ', ""},
-	 {U'ы', "y"},
-	 {U'ь', ""},
-	 {U'э', "e"},
-	 {U'ю', "ju"},
-	 {U'я', "ja"},
+const std::map<char32_t, std::string> latin = {{U'\u0430', "a"},
+	 {U'\u0431', "b"},
+	 {U'\u0432', "v"},
+	 {U'\u0433', "g"},
+	 {U'\u0434', "d"},
+	 {U'\u0435', "e"},
+	 {U'\u0451', "e"},
+	 {U'\u0436', "zh"},
+	 {U'\u0437', "z"},
+	 {U'\u0438', "i"},
+	 {U'\u0439', "j"},
+	 {U'\u043A', "k"},
+	 {U'\u043B', "l"},
+	 {U'\u043C', "m"},
+	 {U'\u043D', "n"},
+	 {U'\u043E', "o"},
+	 {U'\u043F', "p"},
+	 {U'\u0440', "r"},
+	 {U'\u0441', "s"},
+	 {U'\u0442', "t"},
+	 {U'\u0443', "u"},
+	 {U'\u0444', "f"},
+	 {U'\u0445', "h"},
+	 {U'\u0446', "c"},
+	 {U'\u0447', "ch"},
+	 {U'\u0448', "sh"},
+	 {U'\u0449', "sch"},
+	 {U'\u044A', ""},
+	 {U'\u044B', "y"},
+	 {U'\u044C', ""},
+	 {U'\u044D', "e"},
+	 {U'\u044E', "ju"},
+	 {U'\u044F', "ja"},
 	 // Ukrainian / Belarusian
-	 {U'і', "i"},
-	 {U'ї', "ji"},
-	 {U'є', "je"},
-	 {U'ґ', "g"},
-	 {U'ў', "u"}};
+	 {U'\u0456', "i"},
+	 {U'\u0457', "ji"},
+	 {U'\u0454', "je"},
+	 {U'\u0491', "g"},
+	 {U'\u045E', "u"}};
 
 char32_t toLower(const char32_t cp)
 {
 	if (cp >= 0x0410 && cp <= 0x042F)
 		return cp + 0x20;
 	if (cp == 0x0401)
-		return 0x0451; // Ё
+		return 0x0451; // (Cyrillic letter, see code point above)
 	if (cp == 0x0406)
-		return 0x0456; // І
+		return 0x0456; // (Cyrillic letter, see code point above)
 	if (cp == 0x0407)
-		return 0x0457; // Ї
+		return 0x0457; // (Cyrillic letter, see code point above)
 	if (cp == 0x0404)
-		return 0x0454; // Є
+		return 0x0454; // (Cyrillic letter, see code point above)
 	if (cp == 0x0490)
-		return 0x0491; // Ґ
+		return 0x0491; // (Cyrillic letter, see code point above)
 	if (cp == 0x040E)
-		return 0x045E; // Ў
+		return 0x045E; // (Cyrillic letter, see code point above)
 	return cp;
 }
 

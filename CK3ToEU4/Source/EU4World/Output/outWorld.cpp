@@ -582,7 +582,7 @@ void EU4::World::outputLocalization(const Configuration& theConfiguration, bool 
 	std::vector<std::string> fra_ideaText{"Idées", "Traditions", "Ambitions"};
 	std::vector<std::string> spa_ideaText{"Ideas", "tradiciones", "Ambiciones"};
 	std::vector<std::string> ger_ideaText{"Ideen", "Traditionen", "Ambitionen"};
-	// "Идеи", "Традиции", "Амбиции" - written as UTF-8 bytes so the source file encoding doesn't matter.
+	// Russian "Ideas", "Traditions", "Ambitions" - written as UTF-8 bytes so the source file encoding doesn't matter.
 	std::vector<std::string> rus_ideaText{"\xD0\x98\xD0\xB4\xD0\xB5\xD0\xB8",
 		 "\xD0\xA2\xD1\x80\xD0\xB0\xD0\xB4\xD0\xB8\xD1\x86\xD0\xB8\xD0\xB8",
 		 "\xD0\x90\xD0\xBC\xD0\xB1\xD0\xB8\xD1\x86\xD0\xB8\xD0\xB8"};
