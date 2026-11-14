@@ -1,3 +1,4 @@
+#include "../../Mappers/RussianLocMapper/RussianLocMapper.h"
 #include "Country.h"
 #include "../../CK3World/Characters/Character.h"
 #include "../../CK3World/Characters/CharacterDomain.h"
@@ -281,7 +282,7 @@ void EU4::Country::populateCommons(const mappers::CultureMapper& cultureMapper, 
 			auto actualName = previousHolder.second->getName();
 			auto name = localizationMapper.getLocBlockForKey(previousHolder.second->getName());
 			if (name)
-				actualName = name->english;
+				actualName = mappers::RussianLocMapper::pickName(name->english, name->russian);
 			const auto& blockItr = details.monarchNames.find(actualName);
 			if (blockItr != details.monarchNames.end())
 				blockItr->second.first++;
@@ -303,7 +304,7 @@ void EU4::Country::populateCommons(const mappers::CultureMapper& cultureMapper, 
 			auto actualName = courtier.first;
 			auto name = localizationMapper.getLocBlockForKey(actualName);
 			if (name)
-				actualName = name->english;
+				actualName = mappers::RussianLocMapper::pickName(name->english, name->russian);
 			const auto& blockItr = details.monarchNames.find(actualName);
 			if (blockItr == details.monarchNames.end())
 			{
@@ -580,18 +581,24 @@ void EU4::Country::populateLocs(const mappers::LocalizationMapper& localizationM
 		newblock.spanish = "Ideas de " + localizations.find(tag + "_ADJ")->second.spanish;
 		newblock.french = "Doctrines " + localizations.find(tag + "_ADJ")->second.french;
 		newblock.german = localizations.find(tag + "_ADJ")->second.german + " Ideen";
+		// Russian: "<adjective> Ideas / Traditions / Ambition" (UTF-8 bytes, so the source encoding doesn't matter)
+		const auto& adjLoc = localizations.find(tag + "_ADJ")->second;
+		const auto adjRussian = adjLoc.russian.empty() ? adjLoc.english : adjLoc.russian;
+		newblock.russian = adjRussian + " \xD0\x98\xD0\xB4\xD0\xB5\xD0\xB8";
 		localizations.insert(std::pair(tag + "_ideas", newblock));
 
 		newblock.english = localizations.find(tag + "_ADJ")->second.english + " Traditions"; // Roman Traditions
 		newblock.spanish = "Tradiciones de " + localizations.find(tag + "_ADJ")->second.spanish;
 		newblock.french = "traditions " + localizations.find(tag + "_ADJ")->second.french;
 		newblock.german = localizations.find(tag + "_ADJ")->second.german + " Traditionen";
+		newblock.russian = adjRussian + " \xD0\xA2\xD1\x80\xD0\xB0\xD0\xB4\xD0\xB8\xD1\x86\xD0\xB8\xD0\xB8";
 		localizations.insert(std::pair(tag + "_ideas_start", newblock));
 
 		newblock.english = localizations.find(tag + "_ADJ")->second.english + " Ambition"; // Roman Ambition
 		newblock.spanish = "Ambici�n de " + localizations.find(tag + "_ADJ")->second.spanish;
 		newblock.french = "ambitions " + localizations.find(tag + "_ADJ")->second.french;
 		newblock.german = localizations.find(tag + "_ADJ")->second.german + " Ambitionen";
+		newblock.russian = adjRussian + " \xD0\x90\xD0\xBC\xD0\xB1\xD0\xB8\xD1\x86\xD0\xB8\xD1\x8F";
 		localizations.insert(std::pair(tag + "_ideas_bonus", newblock));
 	}
 }
@@ -670,7 +677,7 @@ void EU4::Country::convertHeirs(const mappers::ReligionMapper& religionMapper,
 
 			auto actualName = heir.second->getName();
 			if (const auto& heirNameLoc = localizationMapper.getLocBlockForKey(actualName); heirNameLoc)
-				actualName = heirNameLoc->english;
+				actualName = mappers::RussianLocMapper::pickName(heirNameLoc->english, heirNameLoc->russian);
 			details.heir.name = actualName;
 
 			// We're setting future regnalness
@@ -692,7 +699,7 @@ void EU4::Country::convertHeirs(const mappers::ReligionMapper& religionMapper,
 			std::string dynastyName;
 			const auto& prefix = heir.second->getHouse().second->getPrefix();
 			if (const auto& prefixLoc = localizationMapper.getLocBlockForKey(prefix); prefixLoc)
-				dynastyName = prefixLoc->english;
+				dynastyName = mappers::RussianLocMapper::pickName(prefixLoc->english, prefixLoc->russian);
 			if (!heir.second->getHouse().second->getLocalizedName().empty())
 			{
 				dynastyName += heir.second->getHouse().second->getLocalizedName();
@@ -701,7 +708,7 @@ void EU4::Country::convertHeirs(const mappers::ReligionMapper& religionMapper,
 			{
 				const auto& dynasty = heir.second->getHouse().second->getName();
 				if (const auto& dynastyLoc = localizationMapper.getLocBlockForKey(dynasty); dynastyLoc)
-					dynastyName += dynastyLoc->english;
+					dynastyName += mappers::RussianLocMapper::pickName(dynastyLoc->english, dynastyLoc->russian);
 				else
 					dynastyName += dynasty; // There may be errors here with unresolved keys but it's not our fault.
 			}

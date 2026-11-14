@@ -188,6 +188,13 @@ void mappers::RussianLocMapper::loadAlphabet(std::istream& theStream)
 	Log(LogLevel::Info) << "Loaded " << glyphs.size() << " Cyrillic glyph substitutions.";
 }
 
+std::string mappers::RussianLocMapper::pickName(const std::string& english, const std::string& russian)
+{
+	if (transliterateNames && containsCyrillic(russian))
+		return transliterate(russian);
+	return english;
+}
+
 bool mappers::RussianLocMapper::containsCyrillic(const std::string& utf8)
 {
 	for (const auto cp: decodeUtf8(utf8))

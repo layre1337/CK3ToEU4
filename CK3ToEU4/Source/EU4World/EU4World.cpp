@@ -18,6 +18,7 @@ namespace fs = std::filesystem;
 
 EU4::World::World(const CK3::World& sourceWorld, const Configuration& theConfiguration, const commonItems::ConverterVersion& converterVersion)
 {
+	mappers::RussianLocMapper::transliterateNames = theConfiguration.getRussianLocalization();
 	auto invasion = theConfiguration.getSunset() == Configuration::SUNSET::ACTIVE;
 	auto dynasticNames = theConfiguration.getDynasticNames() == Configuration::DYNASTICNAMES::ENABLED;
 	auto CK3FS = commonItems::ModFilesystem(theConfiguration.getCK3Path(), sourceWorld.getMods());

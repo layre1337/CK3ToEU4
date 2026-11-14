@@ -15,6 +15,10 @@ class RussianLocMapper
 	void loadAlphabet(const std::string& path = "configurables/russian_loc/alphabet.txt");
 	void loadAlphabet(std::istream& theStream);
 
+	// When set, people and dynasty names are taken from the Russian CK3 localization and transliterated (Yakov -> Jakov).
+	inline static bool transliterateNames = false;
+	[[nodiscard]] static std::string pickName(const std::string& english, const std::string& russian);
+
 	[[nodiscard]] bool isLoaded() const { return !glyphs.empty(); }
 	// Cyrillic -> glyphs of the Russian loc mod. Anything the alphabet doesn't cover (e.g. Ukrainian letters) is transliterated.
 	[[nodiscard]] std::string encode(const std::string& utf8) const;
