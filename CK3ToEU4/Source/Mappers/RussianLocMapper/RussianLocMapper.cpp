@@ -192,7 +192,16 @@ std::string mappers::RussianLocMapper::pickName(const std::string& english, cons
 {
 	if (transliterateNames && containsCyrillic(russian))
 		return transliterate(russian);
-	return english;
+	return ensureLatin(english);
+}
+
+std::string mappers::RussianLocMapper::ensureLatin(const std::string& name)
+{
+	// Hand-typed names from savegames or mods can be raw Cyrillic without any localization key.
+	// EU4 has no Cyrillic glyphs, so such strings are transliterated on the spot.
+	if (containsCyrillic(name))
+		return transliterate(name);
+	return name;
 }
 
 bool mappers::RussianLocMapper::containsCyrillic(const std::string& utf8)

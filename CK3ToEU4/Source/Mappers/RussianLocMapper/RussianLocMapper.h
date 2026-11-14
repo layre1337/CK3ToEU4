@@ -18,6 +18,9 @@ class RussianLocMapper
 	// When set, people and dynasty names are taken from the Russian CK3 localization and transliterated (Yakov -> Jakov).
 	inline static bool transliterateNames = false;
 	[[nodiscard]] static std::string pickName(const std::string& english, const std::string& russian);
+	// Names typed by hand in savegames/mods may be raw Cyrillic strings that have no localization key at all.
+	// Those go straight through transliteration so EU4 history never sees Cyrillic letters.
+	[[nodiscard]] static std::string ensureLatin(const std::string& name);
 
 	[[nodiscard]] bool isLoaded() const { return !glyphs.empty(); }
 	// Cyrillic -> glyphs of the Russian loc mod. Anything the alphabet doesn't cover (e.g. Ukrainian letters) is transliterated.

@@ -279,7 +279,7 @@ void EU4::Country::populateCommons(const mappers::CultureMapper& cultureMapper, 
 	{
 		for (const auto& previousHolder: title->second->getPreviousHolders())
 		{
-			auto actualName = previousHolder.second->getName();
+			auto actualName = mappers::RussianLocMapper::ensureLatin(previousHolder.second->getName());
 			auto name = localizationMapper.getLocBlockForKey(previousHolder.second->getName());
 			if (name)
 				actualName = mappers::RussianLocMapper::pickName(name->english, name->russian);
@@ -301,8 +301,8 @@ void EU4::Country::populateCommons(const mappers::CultureMapper& cultureMapper, 
 	{
 		for (const auto& courtier: title->second->getHolder()->second->getCourtierNames())
 		{
-			auto actualName = courtier.first;
-			auto name = localizationMapper.getLocBlockForKey(actualName);
+			auto actualName = mappers::RussianLocMapper::ensureLatin(courtier.first);
+			auto name = localizationMapper.getLocBlockForKey(courtier.first);
 			if (name)
 				actualName = mappers::RussianLocMapper::pickName(name->english, name->russian);
 			const auto& blockItr = details.monarchNames.find(actualName);
@@ -683,7 +683,7 @@ void EU4::Country::convertHeirs(const mappers::ReligionMapper& religionMapper,
 			// We're setting future regnalness
 			if (details.government != "republic" && !details.monarchNames.empty())
 			{
-				auto const& theName = heir.second->getName();
+				const auto theName = mappers::RussianLocMapper::ensureLatin(heir.second->getName());
 				std::string roman;
 				if (details.monarchNames.contains(theName))
 				{
@@ -702,7 +702,7 @@ void EU4::Country::convertHeirs(const mappers::ReligionMapper& religionMapper,
 				dynastyName = mappers::RussianLocMapper::pickName(prefixLoc->english, prefixLoc->russian);
 			if (!heir.second->getHouse().second->getLocalizedName().empty())
 			{
-				dynastyName += heir.second->getHouse().second->getLocalizedName();
+				dynastyName += mappers::RussianLocMapper::ensureLatin(heir.second->getHouse().second->getLocalizedName());
 			}
 			else
 			{
@@ -710,7 +710,7 @@ void EU4::Country::convertHeirs(const mappers::ReligionMapper& religionMapper,
 				if (const auto& dynastyLoc = localizationMapper.getLocBlockForKey(dynasty); dynastyLoc)
 					dynastyName += mappers::RussianLocMapper::pickName(dynastyLoc->english, dynastyLoc->russian);
 				else
-					dynastyName += dynasty; // There may be errors here with unresolved keys but it's not our fault.
+					dynastyName += mappers::RussianLocMapper::ensureLatin(dynasty); // There may be errors here with unresolved keys but it's not our fault.
 			}
 			details.heir.dynasty = dynastyName;
 
@@ -777,26 +777,26 @@ void EU4::Country::convertSpouse(const mappers::ReligionMapper& religionMapper,
 	{
 		const auto spouse = details.holder->getSpouse()->second;
 
-		auto actualName = spouse->getName();
-		if (const auto& queenNameLoc = localizationMapper.getLocBlockForKey(actualName); queenNameLoc)
-			actualName = queenNameLoc->english;
+		auto actualName = mappers::RussianLocMapper::ensureLatin(spouse->getName());
+		if (const auto& queenNameLoc = localizationMapper.getLocBlockForKey(spouse->getName()); queenNameLoc)
+			actualName = mappers::RussianLocMapper::pickName(queenNameLoc->english, queenNameLoc->russian);
 		details.queen.name = actualName;
 
 		std::string dynastyName;
 		const auto& prefix = spouse->getHouse().second->getPrefix();
 		if (const auto& prefixLoc = localizationMapper.getLocBlockForKey(prefix); prefixLoc)
-			dynastyName = prefixLoc->english;
+			dynastyName = mappers::RussianLocMapper::pickName(prefixLoc->english, prefixLoc->russian);
 		if (!spouse->getHouse().second->getLocalizedName().empty())
 		{
-			dynastyName += spouse->getHouse().second->getLocalizedName();
+			dynastyName += mappers::RussianLocMapper::ensureLatin(spouse->getHouse().second->getLocalizedName());
 		}
 		else
 		{
 			const auto& dynasty = spouse->getHouse().second->getName();
 			if (const auto& dynastyLoc = localizationMapper.getLocBlockForKey(dynasty); dynastyLoc)
-				dynastyName += dynastyLoc->english;
+				dynastyName += mappers::RussianLocMapper::pickName(dynastyLoc->english, dynastyLoc->russian);
 			else
-				dynastyName += dynasty; // There may be errors here with unresolved keys but it's not our fault.
+				dynastyName += mappers::RussianLocMapper::ensureLatin(dynasty); // There may be errors here with unresolved keys but it's not our fault.
 		}
 		details.queen.dynasty = dynastyName;
 
@@ -854,9 +854,9 @@ void EU4::Country::convertHolder(const mappers::RulerPersonalitiesMapper& rulerP
 	 const date& startDate)
 {
 	// Determine regnalness.
-	std::string actualName = details.holder->getName();
-	if (const auto nameLoc = localizationMapper.getLocBlockForKey(actualName); nameLoc)
-		actualName = nameLoc->english;
+	std::string actualName = mappers::RussianLocMapper::ensureLatin(details.holder->getName());
+	if (const auto nameLoc = localizationMapper.getLocBlockForKey(details.holder->getName()); nameLoc)
+		actualName = mappers::RussianLocMapper::pickName(nameLoc->english, nameLoc->russian);
 	if (details.government != "republic" && !details.monarchNames.empty())
 	{
 		std::string roman;
@@ -883,19 +883,19 @@ void EU4::Country::convertHolder(const mappers::RulerPersonalitiesMapper& rulerP
 		const auto& prefix = details.holder->getHouse().second->getPrefix();
 		const auto& prefixLoc = localizationMapper.getLocBlockForKey(prefix);
 		if (prefixLoc)
-			dynastyName = prefixLoc->english;
+			dynastyName = mappers::RussianLocMapper::pickName(prefixLoc->english, prefixLoc->russian);
 		if (!details.holder->getHouse().second->getLocalizedName().empty())
 		{
-			dynastyName += details.holder->getHouse().second->getLocalizedName();
+			dynastyName += mappers::RussianLocMapper::ensureLatin(details.holder->getHouse().second->getLocalizedName());
 		}
 		else
 		{
 			const auto& dynasty = details.holder->getHouse().second->getName();
 			const auto& dynastyLoc = localizationMapper.getLocBlockForKey(dynasty);
 			if (dynastyLoc)
-				dynastyName += dynastyLoc->english;
+				dynastyName += mappers::RussianLocMapper::pickName(dynastyLoc->english, dynastyLoc->russian);
 			else
-				dynastyName += dynasty; // There may be errors here with unresolved keys but it's not our fault.
+				dynastyName += mappers::RussianLocMapper::ensureLatin(dynasty); // There may be errors here with unresolved keys but it's not our fault.
 		}
 		details.monarch.dynasty = dynastyName;
 	}
