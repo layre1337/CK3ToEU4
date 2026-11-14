@@ -1,0 +1,36 @@
+name: Fork Windows build
+# Builds CK3ToEU4 for Windows x64 on GitHub-hosted runners and uploads the result as an artifact.
+# Run manually: Actions tab -> "Fork Windows build" -> Run workflow.
+on:
+  workflow_dispatch:
+  push:
+    branches: [ ck3-1.20-support ]
+
+jobs:
+  build:
+    runs-on: windows-2022
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+      with:
+        submodules: true
+
+    - name: Fetch submodules
+      shell: pwsh
+      run: |
+        git submodule update --init --recursive commonItems
+        git submodule update --init --recursive imageMagick Fronter
+
+    - name: Add MSBuild to PATH
+      uses: microsoft/setup-msbuild@v2
+
+    - name: Build solution
+      shell: pwsh
+      run: msbuild CK3ToEU4.sln /m /p:Configuration=Release /p:Platform=x64
+
+    - name: Upload converter
+      uses: actions/upload-artifact@v4
+      with:
+        name: CK3ToEU4-win-x64
+        path: Release/*
+        if-no-files-found: error

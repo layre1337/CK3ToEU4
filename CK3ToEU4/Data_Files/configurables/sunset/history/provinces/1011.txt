@@ -1,0 +1,19 @@
+owner = CHY
+controller = CHY
+add_core = CHY
+add_core = NEH
+
+culture = plains_cree
+religion = totemism
+capital = "Woods cree"
+trade_goods = fur
+hre = no
+base_tax = 5
+base_production = 1
+base_manpower = 3
+
+discovered_by = high_american
+discovered_by = north_american
+discovered_by = mesoamerican
+discovered_by = south_american
+discovered_by = andean

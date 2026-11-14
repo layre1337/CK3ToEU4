@@ -1,0 +1,408 @@
+# Purposefully edited to NOT include unique_modifiers/not_unique_modifiers.
+# These are aspects a reformed/custom religion will inherit from their PARENT religion.
+
+catholic = {
+	heretic = { BOGOMILIST WALDENSIAN FRATICELLI LOLLARD SOCINIAN }
+}
+
+anglican = {
+	heretic = { PENTECOSTAL PURITAN CONGREGATIONALIST }
+}
+
+hussite = {
+	heretic = { TABORITE UTRAQUIST ORPHAN }
+}
+
+protestant = {
+	allowed_center_conversion = {
+		catholic
+	}
+	heretic = { PENTECOSTAL PURITAN CONGREGATIONALIST }
+}
+
+reformed = {
+	allowed_center_conversion = {
+		catholic
+	}
+	heretic = { METHODIST BAPTIST QUAKER }
+}
+
+orthodox = {
+	heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY ICONOCLAST }
+}
+
+coptic = {
+	flags_with_emblem_percentage = 20
+	flag_emblem_index_range = { 1 4 }
+	heretic = { ZAMIKAELITES STEPHANITES EUSTATHIANS }
+}
+
+nestorian = {
+	heretic = { ZAMIKAELITES STEPHANITES EUSTATHIANS }
+}
+
+messalian = {
+	heretic = { ZAMIKAELITES STEPHANITES EUSTATHIANS }
+}
+
+adamites = {
+	heretic = { BOGOMILIST WALDENSIAN FRATICELLI HUSSITE LOLLARD SOCINIAN }
+}
+
+bosnian_church = {
+	heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY ICONOCLAST }
+}
+
+cathar = {
+	heretic = { BOGOMILIST WALDENSIAN FRATICELLI HUSSITE LOLLARD SOCINIAN }
+}
+
+waldensian = {
+	heretic = { BOGOMILIST FRATICELLI HUSSITE LOLLARD SOCINIAN }
+}
+
+lollard = {
+	heretic = { BOGOMILIST WALDENSIAN FRATICELLI HUSSITE SOCINIAN }
+}
+monophysite = {
+	heretic = { ZAMIKAELITES STEPHANITES EUSTATHIANS }
+}
+
+bogomilist = {
+	heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY ICONOCLAST }
+}
+
+monothelite = {
+	heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY ICONOCLAST }
+}
+
+iconoclast = {
+	heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY }
+}
+
+paulician = {
+	heretic = { OLD_BELIEVER MOLOKAN DUKHOBOR KHLYST SKOPTSY ICONOCLAST }
+}
+
+sunni = {
+	heretic = { BEKTASHI AHMADI ZIKRI YAZIDI }
+}
+
+shiite = {
+	heretic = { DRUZE HURUFI ZAIDI }
+}
+
+ibadi = {
+	heretic = { HARURI SUFRI NAJADAT AZRAQI }
+}
+
+mutazila = { #Qadariyah
+	heretic = { HARURI SUFRI NAJADAT AZRAQI }
+}
+
+quranist = {
+	heretic = { BEKTASHI AHMADI YAZIDI }
+}
+
+alawite = {
+	heretic = { DRUZE ZAIDI QARMATIAN }
+}
+
+zikri = {
+	heretic = { BEKTASHI AHMADI YAZIDI }
+}
+
+kharijite = {
+	heretic = { HARURI SUFRI NAJADAT AZRAQI }
+}
+
+druze = {
+	heretic = { HURUFI ZAIDI }
+}
+
+hurufi = {
+	heretic = { DRUZE ZAIDI QARMATIAN }
+}
+
+qarmatian = {
+	heretic = { DRUZE ZAIDI HURUFI }
+}
+
+buddhism = {
+	heretic = { ZEN }
+}
+
+vajrayana = {
+	heretic = { ZEN }
+}
+
+mahayana = {
+	heretic = { ZEN }
+}
+
+confucianism = {
+	heretic = { TAOIST }
+
+	harmonized_modifier = harmonized_other_eastern
+}
+
+shinto = {
+	heretic = { SHUGENDO }
+}
+
+hinduism = {
+	heretic = { BHAKTI }
+}
+
+sikhism = {
+	heretic = { MASANDIS }
+}
+
+jain = {
+	heretic = { TERAPANTHA }
+}
+
+siberian_pagan = {
+	heretic = { GOAT_SKULL FINNIC }
+}
+
+animism = {
+	heretic = { SNAKE_CLAN }
+}
+
+shamanism = {
+	heretic = { GOAT_SKULL }
+}
+
+totemism = {
+	heretic = { BEAR_SPIRIT }
+}
+
+inti = {
+	heretic = { INTI_HERETIC }
+}
+
+nahuatl = {
+	heretic = { NAHUATL_HERETIC }
+}
+
+mesoamerican_religion = {
+	heretic = { MESOAMERICAN_HERETIC }
+}
+
+norse_pagan = {
+	heretic = { OLD_NORSE }
+}
+
+tengri_pagan = {
+	heretic = { OLD_TENGRI }
+}
+
+pagan_religion = {
+	heretic = { SNAKE_CLAN GOAT_SKULL }
+}
+pagan_religion_reformed = {
+	heretic = { SNAKE_CLAN GOAT_SKULL }
+}
+
+aztec_pagan = {
+	heretic = { NAHUATL_HERETIC }
+}
+
+baltic_pagan = {
+	heretic = { DIEVANS }
+}
+
+finnish_pagan = {
+	heretic = { FINNIC }
+}
+
+norse_pagan = {
+	heretic = { OLD_GERMANIC }
+}
+
+slavic_pagan = {
+	heretic = { RODNOVERY }
+}
+
+zun_pagan = {
+	heretic = { DARKNESS }
+}
+
+bon = {
+	heretic = { ZEN }
+}
+
+hellenic_pagan = {
+	heretic = { GOAT_SKULL }
+}
+
+west_african_pagan = {
+	heretic = { GOAT_SKULL }
+}
+kushitism_pagan = {
+	heretic = { GOAT_SKULL SNAKE_CLAN }
+}
+
+magyar_pagan = { #Uralic/Taltoism
+	heretic = { GOAT_SKULL SNAKE_CLAN }
+}
+
+siberian_pagan = { #Uralic/Taltoism
+	heretic = { GOAT_SKULL FINNIC }
+}
+
+jewish = {
+	heretic = { SAMARITAN KARAITE }
+}
+
+samaritan_faith = {
+	heretic = { KARAITE }
+}
+
+karaite_faith = {
+	heretic = { SAMARITAN }
+}
+
+zoroastrian = {
+	heretic = { MAZDAKI MANICHEAN }
+}
+mazdaki = {
+	heretic = { MANICHEAN }
+}
+
+khurmazta = {
+	heretic = { MAZDAKI MANICHEAN }
+}
+
+zurvanism = {
+	heretic = { MANICHEAN MAZDAKI }
+}
+
+gayomarthianism = {
+	heretic = { MANICHEAN MAZDAKI }
+}
+
+khurramism = {
+	heretic = { MANICHEAN MAZDAKI }
+}
+
+yazidi = {
+	heretic = { BEKTASHI AHMADI ZIKRI }
+}
+
+meshefaresism = {
+	heretic = { BEKTASHI AHMADI ZIKRI }
+}
+
+kitebacilweism = {
+	heretic = { BEKTASHI AHMADI ZIKRI }
+}
+
+manichean = {
+	heretic = { SOCINIAN MAZDAKI EUSTATHIANS }
+}
+
+mandeaism = {
+	heretic = { SOCINIAN EUSTATHIANS }
+}
+
+valentinianism = {
+	heretic = { SOCINIAN EUSTATHIANS }
+}
+
+sethianism = {
+	heretic = { SOCINIAN EUSTATHIANS }
+}
+
+priscillianism = {
+	heretic = { SOCINIAN EUSTATHIANS }
+}
+
+cainitism = {
+	heretic = { SOCINIAN EUSTATHIANS }
+}
+
+germanic_pagan = {
+	heretic = { GOAT_SKULL }
+}
+
+anglo_pagan = {
+	heretic = { GOAT_SKULL }
+}
+
+scythian_pagan = {
+	heretic = { GOAT_SKULL FINNIC }
+}
+
+zamolxism = {
+	heretic = { SERAPIS }
+}
+
+mithraism = {
+	heretic = { SERAPIS }
+}
+
+iberian_pagan = {
+	heretic = { SERAPIS }
+}
+
+canaanite = {
+	heretic = { SERAPIS }
+}
+
+kemetism = {
+	heretic = { KUSHITE SPHYNX }
+}
+
+mardukism = {
+	heretic = { DANIEL SUMER }
+}
+
+arab_pagan = {
+	heretic = { BEAR_SPIRIT SNAKE_CLAN }
+}
+
+cybelene = {
+	heretic = { SPHYNX }
+}
+
+armenian_pagan = {
+	heretic = { SPHYNX }
+}
+
+caucasian_pagan = {
+	heretic = { SPHYNX }
+}
+
+atenism = {
+	heretic = { SPHYNX }
+}
+
+druidism = {
+	heretic = { ELUVEITIE SPHYNX }
+}
+
+briton_pagan = {
+	heretic = { ELUVEITIE ASTERIX }
+}
+
+gallic_pagan = {
+	heretic = { ELUVEITIE ASTERIX }
+}
+
+gaelic_pagan = {
+	heretic = { ELUVEITIE ASTERIX }
+}
+
+celtiberian_pagan = {
+	heretic = { ELUVEITIE ASTERIX }
+}
+
+barghawata = {
+	heretic = { SUNNI SHIA IBADI }
+}
+
+dreamtime = {
+	heretic = { WAGYLKOOP MOORAMOORA GINGARRURNDE }
+}

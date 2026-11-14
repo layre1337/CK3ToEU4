@@ -1,0 +1,47 @@
+## The FAQ
+
+== Frequently Asked Questions ==
+Q: Is this the official converter?''
+A: This converter has been done by the same team that specializes in other Paradox converters:
+CK2->EU4, EU4->Vic2, Vic2->HoI4, CK2->EU3, EU3->Vic2, Vic2->HoI3, and relatively soon, Imperator->CK3
+It is not official, but it produces as accurate conversion as possible.
+
+Q: I have an ironman save. Can it be converted?
+A: Yes.
+
+Q: What about mods?
+A: Unless they change how cultures, religions or flags work, sure, use mods. Total map overhauls are not supported (of course), and whatever new cultures and religions are brought by the mod - you'll have to add manually in the files in configurables folder.
+
+Q: How can I customize my game after converting?
+A: Use the guide in after_converting.txt in the converter subdirectory. Scan through configurables/ folder and look into the myriad of configuration files - a great majority of these files is intended to be modified by users to achieve specific conversion results.
+
+Q: Is Linux supported?
+A: The converter does compile on Linux, and you need to compile it from source it to run it. Clone the GitHub repository + all submodules, and run build_linux.sh. If you already have ImageMagick 7 installed, delete relevant commands from the script. Also you'll need to export LD_PATH for the imagemagick libs so the converter can find them. You may need to export the path even when compiling and installing ImageMagick from source.
+
+Q: Is OSX supported?
+A: No, none of the developers has a Mac and we cannot do a port. If you have experience in coding and are willing to help us, we're always interested.
+
+Q: I have found errors / bugs / glitches / wrong provinces / culture mismaps / religion mismaps / broken names /...
+This is good! We need user input to see where we mapped stuff wrong. Please come to forum converter release thread and report any bugs. When reporting upload your ck3 save, converter's log.txt and describe in detail what is wrong. Screenshots always help. We fix user reported bugs as priority.
+https://forum.paradoxplaza.com/forum/threads/ck3-to-eu4-converter-release-thread.1415137/
+
+Q: I want to help!
+We always need help. Not only for this converter, but all others. As they share the same pool of developers we're often stretched thin. We need experienced coders, with working knowledge of C++ and git. We also need modders willing to scour through our mapping files, verify the events, triggers, general data files and so on. If you think you could contribute, please visit our [[forum::1415140|development thread]] and say hello.
+https://forum.paradoxplaza.com/forum/threads/ck3-to-eu4-converter-development-thread.1415140/
+
+### Quick Troubleshooting:
+
+Q: The generated mod was in a different language than my savegame.
+A: At the moment, CK2ToEU4 only guarantees English localization, but German, French and Spanish are nominally supported.
+
+Q: Some/all country names appear as X25, FRA etc.
+A: This is an issue with the localization. Only English is guaranteed, and you may be running EU4 in some other localization. Also, CK2 often lacks named and adjectives for various titles in non-English languages. We try to use English localization when this happens.
+
+Q: I loaded my mod, but nothing changed. What's wrong?
+A: Is the mod enabled in the launcher? If so, then EU4 refused to load it due to possible errors. Come to PDX forums and upload your save, log.txt and errors.txt so we may debug.
+
+Q: The country crashes upon selecting a country and pressing play (at map selection)
+A: Upload your save, log.txt and errors.txt to PDX forums for further study.
+
+Q: The game forbids me to select nations.
+A: Upload your save, log.txt and errors.txt to PDX forums for further study.
