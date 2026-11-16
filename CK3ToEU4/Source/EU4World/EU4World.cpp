@@ -123,6 +123,14 @@ EU4::World::World(const CK3::World& sourceWorld, const Configuration& theConfigu
 	Log(LogLevel::Info) << "-> Verifying Religions and Cultures";
 	verifyReligionsAndCultures();
 
+	// Optionally, state cultures come from the capital rather than the ruler. This runs after provincial cultures have been split
+	// into EU4 cultures, so a CK3 "russian" capital ends up as muscovite, ruthenian, novgorodian and so on.
+	if (theConfiguration.getStateCultureFromCapital())
+	{
+		Log(LogLevel::Info) << "-> Assigning State Cultures From Capitals";
+		assignStateCulturesFromCapitals();
+	}
+
 	Log(LogLevel::Info) << "-> Initializing Dynamic National Ideas";
 	generateNationalIdeasFromDynamicCultures(sourceWorld.getCultures());
 
@@ -1112,6 +1120,34 @@ template <typename KeyType, typename ValueType> std::pair<KeyType, ValueType> ge
 	return *std::max_element(x.begin(), x.end(), [](const pairtype& p1, const pairtype& p2) {
 		return p1.second < p2.second;
 	});
+}
+
+void EU4::World::assignStateCulturesFromCapitals()
+{
+	auto counter = 0;
+	for (const auto& country: countries)
+	{
+		if (country.first == "PAP")
+			continue; // The Pope keeps his own culture setup.
+		const auto& provinces = country.second->getProvinces();
+		if (provinces.empty())
+			continue;
+		const auto capitalItr = provinces.find(country.second->getCapitalID());
+		if (capitalItr == provinces.end() || capitalItr->second->getCulture().empty())
+			continue; // Capital isn't ours or has no culture; keep what we have.
+		const auto& capitalCulture = capitalItr->second->getCulture();
+		if (capitalCulture == country.second->getPrimaryCulture())
+			continue;
+
+		Log(LogLevel::Debug) << country.first << " primary culture " << country.second->getPrimaryCulture() << " -> " << capitalCulture << " (capital).";
+		country.second->setPrimaryCulture(capitalCulture);
+		if (const auto& techMatch = cultureMapper.getTechGroup(capitalCulture); techMatch)
+			country.second->setTechGroup(*techMatch);
+		if (const auto& gfxMatch = cultureMapper.getGFX(capitalCulture); gfxMatch)
+			country.second->setGFX(*gfxMatch);
+		++counter;
+	}
+	Log(LogLevel::Info) << "<> " << counter << " countries changed their primary culture to that of their capital.";
 }
 
 void EU4::World::verifyReligionsAndCultures()

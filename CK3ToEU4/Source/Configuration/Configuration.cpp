@@ -135,6 +135,11 @@ void Configuration::registerKeys()
 		celestial = CELESTIAL(std::stoi(celestialString.getString()));
 		Log(LogLevel::Info) << "Celestial set to: " << celestialString.getString();
 	});
+	registerKeyword("state_culture", [this](std::istream& theStream) {
+		const commonItems::singleString stateCultureString(theStream);
+		stateCulture = STATE_CULTURE(std::stoi(stateCultureString.getString()));
+		Log(LogLevel::Info) << "State culture source set to: " << stateCultureString.getString();
+	});
 	registerKeyword("russian_localization", [this](std::istream& theStream) {
 		const commonItems::singleString russianLocString(theStream);
 		russianLocalization = RUSSIAN_LOC(std::stoi(russianLocString.getString()));

@@ -66,6 +66,7 @@ class World
 	void linkProvincesToCountries();
 	void verifyCapitals();
 	void verifyReligionsAndCultures();
+	void assignStateCulturesFromCapitals();
 	void assignAllCountryReforms();
 	void generateNationalIdeasFromDynamicCultures(const CK3::Cultures& cultures);
 	void importAdvisers();

@@ -384,3 +384,22 @@ option = {
 		}
 	}
 }
+option = {
+	name = state_culture
+	displayName = STATECULTURE
+	tooltip = STATECULTURETIP
+	radioSelector = {
+		radioOption = {
+			name = 1
+			displayName = STATECULTURE1
+			tooltip = STATECULTURE1TIP
+			default = true
+		}
+		radioOption = {
+			name = 2
+			displayName = STATECULTURE2
+			tooltip = STATECULTURE2TIP
+			default = false
+		}
+	}
+}
