@@ -466,10 +466,10 @@
 	link = { ck3 = 1439 ck3 = 7966 eu4 = 739 } # Kashgar, Terek Pass -> Kashgar
 	link = { ck3 = 11142 eu4 = 638 } # Kutai Jauh -> Kutai
 	link = { ck3 = 2112 eu4 = 96 } # Zeeland -> Zeeland
-	link = { ck3 = 2082 eu4 = 94 } # Luxembourg -> Luxemburg
-	link = { ck3 = 2094 eu4 = 93 } # Liege -> Liege
+	link = { ck3 = 2082 ck3 = 2699 ck3 = 2686 ck3 = 13344 eu4 = 94 } # Luxembourg -> Luxemburg
+	link = { ck3 = 2094 ck3 = 2097 eu4 = 93 } # Liege -> Liege
 	link = { ck3 = 357 ck3 = 361 eu4 = 9 } # Halsingland, Medelpad -> Halsingland
-	link = { ck3 = 2670 eu4 = 86 } # Münster -> Munster
+	link = { ck3 = 2670 ck3 = 2674 eu4 = 86 } # Münster -> Munster
 	link = { ck3 = 2087 eu4 = 85 } # Cologne -> Koln
 	link = { ck3 = 2433 ck3 = 2676 eu4 = 84 } # Berg, Mark -> Berg
 	link = { ck3 = 2851 ck3 = 2689 eu4 = 83 } # Nassau, Sayn -> Nassau
@@ -508,7 +508,7 @@
 	link = { ck3 = 11089 eu4 = 652 } # Maguindanao -> Maguindanao
 	link = { ck3 = 11085 eu4 = 651 } # Sulu -> Sulu
 	link = { ck3 = 11226 eu4 = 650 } # Tidore -> Tidore
-	link = { ck3 = 2945 eu4 = 65 } # München -> Munchen
+	link = { ck3 = 2945 ck3 = 2780 eu4 = 65 } # München -> Munchen
 	link = { ck3 = 11229 eu4 = 649 } # Ternate -> Ternate
 	link = { ck3 = 11218 eu4 = 647 } # Seram -> Ceram
 	link = { ck3 = 11119 ck3 = 9681 eu4 = 640 } # Sambas, Riau -> Sambas
@@ -566,15 +566,15 @@
 	link = { ck3 = 2704 eu4 = 4767 } # Saarbrücken -> Zweibrucken
 	link = { ck3 = 465 eu4 = 4753 } # Zadar -> Zadar
 	link = { ck3 = 3157 eu4 = 4748 } # Brandenburg -> Brandenburg
-	link = { ck3 = 2826 eu4 = 48 } # Kolobrzeg -> Kolberg
-	link = { ck3 = 2472 eu4 = 4740 } # Como -> Como
+	link = { ck3 = 2826 ck3 = 13448 eu4 = 48 } # Kolobrzeg -> Kolberg
+	link = { ck3 = 2472 ck3 = 13284 eu4 = 4740 } # Como -> Como
 	link = { ck3 = 602 eu4 = 474 } # Yaitsk -> Yaik
 	link = { ck3 = 2659 eu4 = 4735 } # Arborea -> Arborea
 	link = { ck3 = 2529 eu4 = 4730 } # Bologna -> Bologna
 	link = { ck3 = 2503 eu4 = 4729 } # Padua -> Padova
 	link = { ck3 = 2474 ck3 = 2483 eu4 = 4728 } # Pavia, Tortona -> Pavia
 	link = { ck3 = 3051 ck3 = 3044 ck3 = 3046 eu4 = 4723 } # Opole, Bethen, Nysa -> Opole
-	link = { ck3 = 2034 eu4 = 4720 } # Geneva -> Geneva
+	link = { ck3 = 2034 ck3 = 8719 eu4 = 4720 } # Geneva -> Geneva
 	link = { ck3 = 2960 eu4 = 4709 } # Passau -> Passau
 	link = { ck3 = 499 eu4 = 4704 } # Tarnovgrad -> Tirnovo
 	link = { ck3 = 3770 eu4 = 4702 } # Serres -> Siroz
@@ -593,7 +593,7 @@
 	link = { ck3 = 10563 eu4 = 4651 } # Tsushima -> Tsushima
 	link = { ck3 = 601 eu4 = 462 } # Odishi -> Odishi
 	link = { ck3 = 7164 ck3 = 7168 eu4 = 461 } # Almaty, Qayaliq -> Almaty
-	link = { ck3 = 2809 eu4 = 46 } # Rostock -> Rostock
+	link = { ck3 = 2809 ck3 = 2808 eu4 = 46 } # Rostock -> Rostock
 	link = { ck3 = 4592 eu4 = 4566 } # Kairwan -> Kairwan
 	link = { ck3 = 2000 eu4 = 4560 } # Ibiza -> Ibiza
 	link = { ck3 = 2002 eu4 = 4559 } # Menorca -> Menorca
@@ -644,7 +644,7 @@
 	link = { ck3 = 2273 eu4 = 4389 } # Touraine -> Touraine
 	link = { ck3 = 2322 ck3 = 2181 eu4 = 4388 } # Chartres, Beaumont -> Chartres
 	link = { ck3 = 2165 eu4 = 4384 } # Rennes -> Rennais
-	link = { ck3 = 2416 eu4 = 4381 } # Oversticht -> Oversticht
+	link = { ck3 = 2416 ck3 = 2422 eu4 = 4381 } # Oversticht -> Oversticht
 	link = { ck3 = 16 eu4 = 4378 } # Desmond -> Desmond
 	link = { ck3 = 41 eu4 = 4377 } # Ossory -> Ormond
 	link = { ck3 = 1613 eu4 = 4376 } # Leicestershire -> Leicester
@@ -757,7 +757,7 @@
 	link = { ck3 = 6043 eu4 = 363 } # Damietta -> Damietta
 	link = { ck3 = 6039 ck3 = 6056 eu4 = 361 } # Cairo, Giza -> Cairo
 	link = { ck3 = 6074 eu4 = 360 eu4 = 4320 eu4 = 4319 } # Qus -> Qus, Girga, Isna
-	link = { ck3 = 94 ck3 = 92 eu4 = 36 } # Rävala, Wiek -> Reval
+	link = { ck3 = 94 ck3 = 92 ck3 = 96 eu4 = 36 } # Rävala, Wiek -> Reval
 	link = { ck3 = 6059 eu4 = 359 } # Fayyum -> Fayyum
 	link = { ck3 = 6053 eu4 = 4317 eu4 = 358 } # Alexandria -> Buhaira, Alexandria
 	link = { ck3 = 6099 eu4 = 357 } # Derna -> Darnah
@@ -765,7 +765,7 @@
 	link = { ck3 = 4550 eu4 = 355 } # Syrte -> Sirt
 	link = { ck3 = 4557 eu4 = 354 } # Tripolitana -> Tripoli
 	link = { ck3 = 4621 eu4 = 351 } # Biskra -> Biskra
-	link = { ck3 = 88 eu4 = 35 } # Saaremaa -> Osel
+	link = { ck3 = 88 ck3 = 91 eu4 = 35 } # Saaremaa -> Osel
 	link = { ck3 = 4724 eu4 = 348 } # Sous -> Sus
 	link = { ck3 = 4713 eu4 = 344 } # Marrakesh -> Marrakech
 	link = { ck3 = 4688 eu4 = 343 } # Fes -> Fez
@@ -792,21 +792,21 @@
 	link = { ck3 = 181 eu4 = 30 } # Viipuri -> Viborg
 	link = { ck3 = 4185 eu4 = 2999 } # Hormuz -> Hormuz
 	link = { ck3 = 5000 ck3 = 4995 ck3 = 5003 ck3 = 4997 eu4 = 2998 } # Buzau, Ialomita, Braila, Calara0i -> Buzau
-	link = { ck3 = 2827 ck3 = 3189 eu4 = 2995 } # Slupsk, Szczytno -> Stolp
+	link = { ck3 = 2827 ck3 = 3189 ck3 = 2828 eu4 = 2995 } # Slupsk, Szczytno -> Stolp
 	link = { ck3 = 2816 eu4 = 2994 } # Wolgast -> Wolgast
 	link = { ck3 = 1937 ck3 = 1891 eu4 = 2990 } # Teruel, Albarracin -> Teruel
 	link = { ck3 = 1859 ck3 = 1879 eu4 = 2988 } # Tarragona, Lleida -> Tarragona
 	link = { ck3 = 1869 ck3 = 1868 ck3 = 1870 eu4 = 2987 } # Urgell, Cerdaña, Pallas -> Urgell
 	link = { ck3 = 2653 ck3 = 2655 eu4 = 2986 } # Cagliari, Tortoli -> Cagliari
 	link = { ck3 = 2628 ck3 = 2625 eu4 = 2984 } # Cosenza, Rossano -> Cosenza
-	link = { ck3 = 2612 eu4 = 2983 } # Salerno -> Salerno
-	link = { ck3 = 2638 eu4 = 2982 } # Siracusa -> Syracuse
+	link = { ck3 = 2612 ck3 = 2611 eu4 = 2983 } # Salerno -> Salerno
+	link = { ck3 = 2638 ck3 = 2642 ck3 = 2639 eu4 = 2982 } # Siracusa -> Syracuse
 	link = { ck3 = 2467 eu4 = 2981 } # Monferrato -> Montferrat
 	link = { ck3 = 2537 ck3 = 2485 eu4 = 2980 } # Lucca, Luni -> Lucca
 	link = { ck3 = 5196 eu4 = 298 } # Kursk -> Kursk
 	link = { ck3 = 2470 eu4 = 2979 } # Novara -> Novara
-	link = { ck3 = 2544 ck3 = 2551 eu4 = 2978 } # Arezzo, Casentino -> Arezzo
-	link = { ck3 = 2555 eu4 = 2977 } # Urbino -> Urbino
+	link = { ck3 = 2544 ck3 = 2551 ck3 = 2554 eu4 = 2978 } # Arezzo, Casentino -> Arezzo
+	link = { ck3 = 2555 ck3 = 2547 eu4 = 2977 } # Urbino -> Urbino
 	link = { ck3 = 2101 eu4 = 2975 eu4 = 1742 } # Cleves -> Kleves, Upper Guelders
 	link = { ck3 = 2841 ck3 = 2844 eu4 = 2972 } # Paderborn, Lippe -> Paderborn
 	link = { ck3 = 3047 eu4 = 2970 } # Hradec -> Hradecko
@@ -848,7 +848,7 @@
 	link = { ck3 = 9856 eu4 = 2741 } # Tamna -> Jeju
 	link = { ck3 = 5146 eu4 = 274 } # Pskov -> Pskov
 	link = { ck3 = 12841 eu4 = 2725 } # Aru -> Aru
-	link = { ck3 = 149 eu4 = 272 } # Kernave -> Vilna
+	link = { ck3 = 149 ck3 = 165 eu4 = 272 } # Kernave -> Vilna
 	link = { ck3 = 11216 eu4 = 2717 eu4 = 645 } # Buru-Sula -> Sula, Buru
 	link = { ck3 = 11188 eu4 = 2716 } # Butun -> Buton
 	link = { ck3 = 11208 eu4 = 2713 } # Gorontalo -> Gorontalo
@@ -1000,12 +1000,12 @@
 	link = { ck3 = 1301 eu4 = 4466 } # Mahoba -> Mahoba
 	link = { ck3 = 1269 eu4 = 2050 } # Canda -> Chanda
 	link = { ck3 = 826 eu4 = 2041 } # Manipur -> Manipur
-	link = { ck3 = 2030 ck3 = 2064 eu4 = 204 } # Viennois, Valentinois -> Dauphine
+	link = { ck3 = 2030 ck3 = 2064 ck3 = 2033 ck3 = 2066 eu4 = 204 } # Viennois, Valentinois -> Dauphine
 	link = { ck3 = 865 eu4 = 2038 } # Midnapore -> Midnapore
 	link = { ck3 = 1144 eu4 = 2037 } # Orangallu -> Warangal
 	link = { ck3 = 2065 eu4 = 203 } # Lyon -> Lyonnais
 	link = { ck3 = 1124 eu4 = 2029 eu4 = 531 } # Kanara -> South Kanara, North Kanara
-	link = { ck3 = 2015 ck3 = 2216 eu4 = 200 } # Montpellier, Uzès -> Montpellier
+	link = { ck3 = 2015 ck3 = 2216 ck3 = 2016 eu4 = 200 } # Montpellier, Uzès -> Montpellier
 	link = { ck3 = 243 ck3 = 244 eu4 = 20 } # Þrándheimr, Naumdælafylki -> Trondelag
 	link = { ck3 = 330 eu4 = 2 } # Östergötland -> Ostergotland
 	link = { ck3 = 2292 ck3 = 2288 ck3 = 2299 ck3 = 2225 eu4 = 199 } # Auvergne, Clermont-sur-Allier, Thiers, Velay -> Auvergne
@@ -1032,9 +1032,9 @@
 	link = { ck3 = 2236 eu4 = 194 } # Périgord -> Perigord
 	link = { ck3 = 4924 eu4 = 1939 } # Leczyca -> Leczyca
 	link = { ck3 = 4943 ck3 = 4946 eu4 = 1938 } # Lomza, Zakroczym -> Wizna
-	link = { ck3 = 2418 eu4 = 1931 } # Ostfriesland -> East Frisia
+	link = { ck3 = 2418 ck3 = 2437 eu4 = 1931 } # Ostfriesland -> East Frisia
 	link = { ck3 = 216 eu4 = 1930 } # Aland -> Aland
-	link = { ck3 = 2075 eu4 = 193 } # Besancon -> Franche-Comte
+	link = { ck3 = 2075 ck3 = 2458 eu4 = 193 } # Besancon -> Franche-Comte
 	link = { ck3 = 2380 ck3 = 2374 eu4 = 192 } # Dijon, Langres -> Dijonnais
 	link = { ck3 = 2307 eu4 = 191 } # Nevers -> Nivernais
 	link = { ck3 = 4588 eu4 = 1882 } # Annaba -> Annaba
@@ -1046,14 +1046,14 @@
 	link = { ck3 = 2793 eu4 = 1874 } # Bremen -> Bremen
 	link = { ck3 = 2766 eu4 = 1872 } # Ulm -> Ulm
 	link = { ck3 = 2053 eu4 = 1870 } # Sankt Gallen -> St Gallen
-	link = { ck3 = 2778 eu4 = 1868 } # Augsburg -> Augsburg
+	link = { ck3 = 2778 ck3 = 2782 eu4 = 1868 } # Augsburg -> Augsburg
 	link = { ck3 = 2098 eu4 = 1866 } # Namur -> Namur
 	link = { ck3 = 3835 ck3 = 3839 ck3 = 3842 eu4 = 1864 } # Somogy, Tolna, Baranya -> Somogy
 	link = { ck3 = 3110 ck3 = 3119 ck3 = 3092 eu4 = 1863 } # Graz, Mürzzuschlag, Pitten -> Graz
-	link = { ck3 = 2489 eu4 = 1862 } # Cremona -> Cremona
+	link = { ck3 = 2489 ck3 = 2491 eu4 = 1862 } # Cremona -> Cremona
 	link = { ck3 = 1621 eu4 = 1861 } # Derby -> Derby
 	link = { ck3 = 1522 ck3 = 1518 eu4 = 1860 } # Norfolk, Suffolk -> Norfolk
-	link = { ck3 = 2361 eu4 = 186 } # Reims -> Reims
+	link = { ck3 = 2361 ck3 = 2373 eu4 = 186 } # Reims -> Reims
 	link = { ck3 = 3198 eu4 = 1859 } # Chelmno -> Chelmno
 	link = { ck3 = 2822 eu4 = 1858 } # Szczecin -> Stettin
 	link = { ck3 = 600 eu4 = 1856 } # Abkhazia -> Abkhazia
@@ -1094,7 +1094,7 @@
 	link = { ck3 = 500 eu4 = 1765 } # Sredets -> Sofia
 	link = { ck3 = 3628 eu4 = 1764 } # Burgas -> Burgas
 	link = { ck3 = 2084 eu4 = 1760 } # Koblenz -> Koblenz
-	link = { ck3 = 2896 eu4 = 1758 } # Hannover -> Hanover
+	link = { ck3 = 2896 ck3 = 2898 eu4 = 1758 } # Hannover -> Hanover
 	link = { ck3 = 5838 eu4 = 1755 eu4 = 4129 eu4 = 1964 } # Ustyug -> Ustyug, Ust-Vym, Ust-Sysolsk
 	link = { ck3 = 581 eu4 = 1754 } # Murom -> Murom
 	link = { ck3 = 5824 eu4 = 314 } # Vologda -> Vologda
@@ -1104,7 +1104,7 @@
 	link = { ck3 = 1842 eu4 = 1749 } # Cadiz -> Cadiz
 	link = { ck3 = 1977 eu4 = 1748 } # Jaén -> Jaen
 	link = { ck3 = 1832 eu4 = 1747 } # Caceres -> Caceres
-	link = { ck3 = 2103 eu4 = 4770 } # Guelders -> Den Bosch
+	link = { ck3 = 2103 ck3 = 13360 eu4 = 4770 } # Guelders -> Den Bosch
 	link = { ck3 = 2426 ck3 = 2429 eu4 = 99 } # Arnheim, Zutphen -> Gelre
 	link = { ck3 = 2106 eu4 = 1744 eu4 = 95 } # Antwerpen -> Antwerpen, Breda
 	link = { ck3 = 2118 eu4 = 1743 } # Cambray -> Cambray
@@ -1150,7 +1150,7 @@
 	link = { ck3 = 8350 eu4 = 1213 } # Showa -> Shewa
 	link = { ck3 = 8398 eu4 = 1212 } # Zaila -> Zeila
 	link = { ck3 = 8394 eu4 = 1211 } # Harar -> Harer
-	link = { ck3 = 2608 eu4 = 121 } # Napoli -> Napoli
+	link = { ck3 = 2608 ck3 = 2609 ck3 = 2606 eu4 = 121 } # Napoli -> Napoli
 	link = { ck3 = 8462 eu4 = 1205 } # Mogadishu -> Mogadishu
 	link = { ck3 = 12775 eu4 = 1204 } # Lamu -> Lamu
 	link = { ck3 = 12780 eu4 = 1203 } # Malindi -> Malindi
@@ -1158,15 +1158,15 @@
 	link = { ck3 = 12792 ck3 = 12791 eu4 = 1201 } # Zanzibar, Pemba -> Zanzibar
 	link = { ck3 = 12788 eu4 = 1200 } # Tanga -> Tanga
 	link = { ck3 = 63 eu4 = 12 } # Sjælland -> Sjalland
-	link = { ck3 = 2582 ck3 = 2597 eu4 = 119 } # Ancona, Fermo -> Ancona
-	link = { ck3 = 2574 ck3 = 2571 eu4 = 118 } # Roma, Viterbo -> Roma
+	link = { ck3 = 2582 ck3 = 2597 ck3 = 2594 eu4 = 119 } # Ancona, Fermo -> Ancona
+	link = { ck3 = 2574 ck3 = 2571 ck3 = 2575 eu4 = 118 } # Roma, Viterbo -> Roma
 	link = { ck3 = 6521 eu4 = 1161 } # Bauchi -> Bauchi
-	link = { ck3 = 2543 eu4 = 116 } # Firenze -> Firenze
+	link = { ck3 = 2543 ck3 = 2558 eu4 = 116 } # Firenze -> Firenze
 	link = { ck3 = 6804 ck3 = 6808 ck3 = 6842 eu4 = 1159 } # Baguirmi, Tendukheda, Dár Rashíd -> Bagirmi
 	link = { ck3 = 6484 eu4 = 1158 } # Kanem -> Kanem
 	link = { ck3 = 6536 eu4 = 2279 } # Daura -> Daura
 	link = { ck3 = 6517 eu4 = 1155 } # Kano -> Kano
-	link = { ck3 = 2536 eu4 = 115 } # Pisa -> Pisa
+	link = { ck3 = 2536 ck3 = 2561 eu4 = 115 } # Pisa -> Pisa
 	link = { ck3 = 6537 eu4 = 1149 } # Katsina -> Katsina
 	link = { ck3 = 6539 eu4 = 1148 } # Gobir -> Gobir
 	link = { ck3 = 8071 eu4 = 1147 } # Benin -> Benin
@@ -1199,10 +1199,10 @@
 	link = { ck3 = 895 eu4 = 1076 } # Kurgan -> Kurgan
 	link = { ck3 = 891 eu4 = 1075 } # Tyumen -> Tyumen
 	link = { ck3 = 7006 ck3 = 898 eu4 = 1074 } # Sibir, Tobol -> Sibir
-	link = { ck3 = 2495 eu4 = 110 } # Trent -> Trentino
+	link = { ck3 = 2495 ck3 = 13286 eu4 = 110 } # Trent -> Trentino
 	link = { ck3 = 7775 ck3 = 7767 ck3 = 7777 ck3 = 7727 ck3 = 7764 eu4 = 1060 } # Erhüü, Kitoï, Olkhon, Ryty, Kada -> Irkutsk
-	link = { ck3 = 2534 eu4 = 106 } # Modena -> Modena
-	link = { ck3 = 2488 eu4 = 105 } # Parma -> Parma
+	link = { ck3 = 2534 ck3 = 2530 eu4 = 106 } # Modena -> Modena
+	link = { ck3 = 2488 ck3 = 2532 eu4 = 105 } # Parma -> Parma
 	link = { ck3 = 2479 eu4 = 104 } # Lombardia -> Milan
 	link = { ck3 = 10752 eu4 = 1030 } # Owari -> Owari
 	link = { ck3 = 10680 eu4 = 1029 } # Kai -> Kai
@@ -1212,9 +1212,9 @@
 	link = { ck3 = 10733 eu4 = 1023 } # Echizen -> Echizen
 	link = { ck3 = 10829 eu4 = 1022 eu4 = 4822 } # Indrapura -> Indrapura, Amaravati
 	link = { ck3 = 10598 ck3 = 10601 eu4 = 1021 } # Settsu, Kawachi -> Settsu
-	link = { ck3 = 2017 eu4 = 202 } # Venaissin -> Avignon
+	link = { ck3 = 2017 ck3 = 2059 eu4 = 202 } # Venaissin -> Avignon
 	link = { ck3 = 2020 eu4 = 102 } # Nice -> Nice
-	link = { ck3 = 2027 eu4 = 2991 } # Forcalquier -> Forcalquier
+	link = { ck3 = 2027 ck3 = 2025 ck3 = 2061 eu4 = 2991 } # Forcalquier -> Forcalquier
 	link = { ck3 = 10593 eu4 = 1019 } # Harima -> Harima
 	link = { ck3 = 10623 ck3 = 10641 ck3 = 10627 eu4 = 1018 } # Izumo, Oki, Hoki -> Izumo
 	link = { ck3 = 10570 ck3 = 10566 eu4 = 1017 } # Suo, Nagato -> Suo
@@ -1237,7 +1237,7 @@
 	link = { ck3 = 1137 ck3 = 1333 eu4 = 4503 } # Mansura, Siwistan -> Mansura
 	link = { ck3 = 10975 ck3 = 10897 eu4 = 583 } # Hsenwi, Jingmadian -> Hsenwi
 	link = { ck3 = 10805 eu4 = 1823 } # Stung Treng -> Stung Treng
-	link = { ck3 = 2099 eu4 = 2974 } # Maastricht -> Loon
+	link = { ck3 = 2099 ck3 = 13362 eu4 = 2974 } # Maastricht -> Loon
 	link = { ck3 = 1299 ck3 = 1298 eu4 = 740 } # Candhoba, Chanderi -> Chanderi
 	link = { ck3 = 2746 eu4 = 74 } # Baden -> Baden
 	link = { ck3 = 2750 eu4 = 72 } # Breisgau -> Breisgau
@@ -1353,12 +1353,12 @@
 	link = { ck3 = 567 eu4 = 1945 } # Novgorod Seversky -> Severia
 	link = { ck3 = 5087 eu4 = 1942 } # Zhytomyr -> Zhytomyr
 	link = { ck3 = 161 ck3 = 5043 eu4 = 1937 } # Grodno, Volkovysk -> Grodno
-	link = { ck3 = 156 eu4 = 1936 } # Yatvyagi -> Kovno
-	link = { ck3 = 2614 ck3 = 2621 eu4 = 1933 } # Apulia, Bari -> Bari
+	link = { ck3 = 156 ck3 = 157 ck3 = 162 eu4 = 1936 } # Yatvyagi -> Kovno
+	link = { ck3 = 2614 ck3 = 2621 ck3 = 2623 eu4 = 1933 } # Apulia, Bari -> Bari
 	link = { ck3 = 2281 ck3 = 2306 eu4 = 190 } # Bourbon, Jaligny -> Bourbonnais
 	link = { ck3 = 2081 eu4 = 187 } # Bar -> Barrois
 	link = { ck3 = 2037 eu4 = 165 } # Bern -> Bern
-	link = { ck3 = 2125 eu4 = 90 } # Yperen -> Bruges
+	link = { ck3 = 2125 ck3 = 2115 eu4 = 90 } # Yperen -> Bruges
 	link = { ck3 = 2114 eu4 = 1865 } # Brugge -> Ghent
 	link = { ck3 = 5919 eu4 = 1855 } # Beirut -> Sidon
 	link = { ck3 = 5961 ck3 = 5921 ck3 = 5922 eu4 = 1854 } # Jaffa, Acre, Tiberias -> Jaffa
@@ -1382,7 +1382,7 @@
 	link = { ck3 = 6433 ck3 = 8514 eu4 = 1217 } # Fazughli, Gumuz -> Fazughli
 	link = { ck3 = 8498 eu4 = 2778 } # Gode -> Werder
 	link = { ck3 = 12784 eu4 = 1202 } # Mombasa -> Mombasa
-	link = { ck3 = 2560 ck3 = 2562 eu4 = 117 } # Siena, Orbetello -> Siena
+	link = { ck3 = 2560 ck3 = 2562 ck3 = 2570 eu4 = 117 } # Siena, Orbetello -> Siena
 	link = { ck3 = 6511 ck3 = 6504 eu4 = 1157 } # Bornu, Yau -> Borno
 	link = { ck3 = 6540 ck3 = 6545 eu4 = 1150 } # Sokoto, Kaduna -> Zamfara
 	link = { ck3 = 6543 eu4 = 1154 } # Zaria -> Zazzau
@@ -1450,9 +1450,9 @@
 	link = { autogenerated = yes ck3 = 2424 eu4 = 98 } # Nedersticht -> Utrecht
 	link = { autogenerated = yes ck3 = 2405 eu4 = 97 } # Westfriesland -> Amsterdam
 	link = { autogenerated = yes ck3 = 2105 eu4 = 92 } # Brabant -> Brussels
-	link = { autogenerated = yes ck3 = 2117 eu4 = 91 } # Hainaut -> Hainaut
+	link = { autogenerated = yes ck3 = 2117 ck3 = 13357 eu4 = 91 } # Hainaut -> Hainaut
 	link = { autogenerated = yes ck3 = 2132 eu4 = 89 } # Boulogne -> Picardie
-	link = { autogenerated = yes ck3 = 2184 eu4 = 88 } # Amiens -> Artois
+	link = { autogenerated = yes ck3 = 2184 ck3 = 13345 eu4 = 88 } # Amiens -> Artois
 	link = { autogenerated = yes ck3 = 2129 eu4 = 87 } # Guînes -> Calais
 	link = { autogenerated = yes ck3 = 2680 ck3 = 2843 eu4 = 82 } # Arnsberg, Waldeck -> Westfalen
 	link = { autogenerated = yes ck3 = 2857 eu4 = 81 } # Marburg -> Oberhessen
@@ -1519,7 +1519,7 @@
 	link = { autogenerated = yes ck3 = 11223 eu4 = 648 } # Bacan -> Halmahera
 	link = { autogenerated = yes ck3 = 11212 eu4 = 644 } # Wenang -> Manado
 	link = { autogenerated = yes ck3 = 11199 ck3 = 11193 ck3 = 11196 eu4 = 643 } # Mori, Banggai, Banggai Utara -> Poso
-	link = { autogenerated = yes ck3 = 2959 eu4 = 64 } # Frontenhausen -> Landshut
+	link = { autogenerated = yes ck3 = 2959 ck3 = 2981 eu4 = 64 } # Frontenhausen -> Landshut
 	link = { autogenerated = yes ck3 = 11160 ck3 = 11154 ck3 = 11155 eu4 = 637 } # Kudat, Nabawan, Menjelutung -> Api-Api
 	link = { autogenerated = yes ck3 = 11382 eu4 = 635 } # Sonba'i -> West Timor
 	link = { autogenerated = yes ck3 = 11370 ck3 = 11373 eu4 = 633 } # Nusa Nipa, Galiyao -> Flores
@@ -1602,7 +1602,7 @@
 	link = { autogenerated = yes ck3 = 2919 ck3 = 2911 ck3 = 2918 eu4 = 4773 } # Gleichenstein, Hildesheim, Goslar -> Gottingen
 	link = { autogenerated = yes ck3 = 2845 eu4 = 4771 eu4 = 4772 } # Wölpe -> Verden, Celle
 	link = { autogenerated = yes ck3 = 7315 ck3 = 7286 ck3 = 7300 ck3 = 7308 ck3 = 7311 ck3 = 7313 eu4 = 477 } # Targyl, Kulan Utmas, Arkalyk, Betpa, Manaka, Bulat -> Nadym
-	link = { autogenerated = yes ck3 = 2080 ck3 = 2091 ck3 = 2367 eu4 = 4766 } # Briey, Bouillon, Chalons -> Verdun
+	link = { autogenerated = yes ck3 = 2080 ck3 = 2091 ck3 = 2367 ck3 = 2395 eu4 = 4766 } # Briey, Bouillon, Chalons -> Verdun
 	link = { autogenerated = yes ck3 = 2717 eu4 = 4765 } # Colmar -> Mulhouse
 	link = { autogenerated = yes ck3 = 2072 eu4 = 4764 } # Dole -> Salins
 	link = { autogenerated = yes ck3 = 3089 eu4 = 4762 } # Sankt Pölten -> Wienerwald
@@ -1616,8 +1616,8 @@
 	link = { autogenerated = yes ck3 = 464 ck3 = 3536 eu4 = 4752 } # Gacka, Modru -> Rijeka
 	link = { autogenerated = yes ck3 = 3100 eu4 = 4751 } # Kranj -> Cilli
 	link = { autogenerated = yes ck3 = 2812 eu4 = 4749 } # Werle -> Neubrandenburg
-	link = { autogenerated = yes ck3 = 3186 eu4 = 4747 } # Walcz -> Dramburg
-	link = { autogenerated = yes ck3 = 2818 eu4 = 4746 } # Wolin -> Stargard
+	link = { autogenerated = yes ck3 = 3186 ck3 = 3188 eu4 = 4747 } # Walcz -> Dramburg
+	link = { autogenerated = yes ck3 = 2818 ck3 = 2817 eu4 = 4746 } # Wolin -> Stargard
 	link = { autogenerated = yes ck3 = 3015 ck3 = 3012 ck3 = 3024 ck3 = 3027 eu4 = 4744 } # Osterland, Wolkenstein, Brene, Meissen -> Zwickau
 	link = { autogenerated = yes ck3 = 2999 ck3 = 3014 eu4 = 4743 } # Orlamünde, Naumburg -> Weimar
 	link = { autogenerated = yes ck3 = 2931 eu4 = 4742 } # Blankenburg -> Goslar
@@ -1626,7 +1626,7 @@
 	link = { autogenerated = yes ck3 = 2637 eu4 = 4737 } # Castrogiovanni -> Girgenti
 	link = { autogenerated = yes ck3 = 2607 eu4 = 4734 } # Benevento -> Avellino
 	link = { autogenerated = yes ck3 = 2603 eu4 = 4733 } # Lanciano -> Molise
-	link = { autogenerated = yes ck3 = 2589 ck3 = 2593 eu4 = 4732 } # Tivoli, Capua -> Terracina
+	link = { autogenerated = yes ck3 = 2589 ck3 = 2593 ck3 = 2590 eu4 = 4732 } # Tivoli, Capua -> Terracina
 	link = { autogenerated = yes ck3 = 5504 eu4 = 473 } # Jambalar -> Samara
 	link = { autogenerated = yes ck3 = 2040 eu4 = 4727 } # Canavese -> Saluzzo
 	link = { autogenerated = yes ck3 = 4159 eu4 = 4726 } # Prerov -> Hradiste
@@ -1900,7 +1900,7 @@
 	link = { autogenerated = yes ck3 = 45 ck3 = 49 eu4 = 4118 } # Thomond, Ormond -> Cork
 	link = { autogenerated = yes ck3 = 5104 eu4 = 4115 } # Korosten -> Mazyr
 	link = { autogenerated = yes ck3 = 388 ck3 = 385 eu4 = 4113 } # Peäccam, Kittila -> Rovaniemi
-	link = { autogenerated = yes ck3 = 3203 ck3 = 122 eu4 = 41 } # Natangia, Sambia -> Konigsberg
+	link = { autogenerated = yes ck3 = 3203 ck3 = 122 ck3 = 3205 eu4 = 41 } # Natangia, Sambia -> Konigsberg
 	link = { autogenerated = yes ck3 = 12804 eu4 = 4054 } # Kirinyaga -> Kuria
 	link = { autogenerated = yes ck3 = 5944 ck3 = 5939 ck3 = 5947 eu4 = 405 } # Sukhna, Syrrusafa, Palmyra -> Tadmor
 	link = { autogenerated = yes ck3 = 6436 ck3 = 6404 eu4 = 4033 } # Wolqayt, Eleila -> Al Qadarif
@@ -1909,7 +1909,7 @@
 	link = { ck3 = 6156 eu4 = 396 } # Uwal -> Bahrain
 	link = { ck3 = 6150 eu4 = 395 } # Uqayr -> Qatar
 	link = { autogenerated = yes ck3 = 6172 ck3 = 6171 ck3 = 6168 eu4 = 393 } # Ha'il, Shaqiq, Tha'labiya -> Jabal Shammar
-	link = { autogenerated = yes ck3 = 110 ck3 = 111 eu4 = 39 } # Vanemane, Grobin -> Goldingen
+	link = { autogenerated = yes ck3 = 110 ck3 = 111 ck3 = 113 eu4 = 39 } # Vanemane, Grobin -> Goldingen
 	link = { autogenerated = yes ck3 = 6309 eu4 = 389 } # Kinda Sakun -> Mukalla
 	link = { autogenerated = yes ck3 = 6291 eu4 = 388 } # Dathina -> Aden
 	link = { autogenerated = yes ck3 = 6282 eu4 = 387 } # Mandab -> Mokha
@@ -1920,7 +1920,7 @@
 	link = { autogenerated = yes ck3 = 17 eu4 = 372 } # Oriel -> Tyrone
 	link = { autogenerated = yes ck3 = 5 ck3 = 3 ck3 = 4 eu4 = 371 } # Norðrland, Suðrland, Austrland -> Akureyri
 	link = { autogenerated = yes ck3 = 1 eu4 = 370 } # Vestrland -> Reykjavik
-	link = { autogenerated = yes ck3 = 99 ck3 = 101 ck3 = 102 eu4 = 37 } # Sakala, Metsepole, Talava -> Livland
+	link = { autogenerated = yes ck3 = 99 ck3 = 101 ck3 = 102 ck3 = 136 eu4 = 37 } # Sakala, Metsepole, Talava -> Livland
 	link = { autogenerated = yes ck3 = 8714 eu4 = 366 } # Maxorata -> Gran Canaria
 	link = { autogenerated = yes ck3 = 6052 eu4 = 362 } # Al-Buhaira -> Rosetta
 	link = { autogenerated = yes ck3 = 6102 ck3 = 6106 eu4 = 356 } # Barqa, Awjila -> Benghazi
@@ -1934,7 +1934,7 @@
 	link = { autogenerated = yes ck3 = 751 eu4 = 325 } # Paphlagonia -> Kastamonu
 	link = { autogenerated = yes ck3 = 5672 eu4 = 324 } # Isauria -> Karaman
 	link = { autogenerated = yes ck3 = 742 ck3 = 5536 eu4 = 322 } # Prusa, Hadrianeia -> Kutahya
-	link = { autogenerated = yes ck3 = 5647 ck3 = 748 eu4 = 319 } # Caria, Chonae -> Mentese
+	link = { autogenerated = yes ck3 = 5647 ck3 = 748 ck3 = 747 eu4 = 319 } # Caria, Chonae -> Mentese
 	link = { autogenerated = yes ck3 = 745 eu4 = 318 } # Ionia -> Sugla
 	link = { autogenerated = yes ck3 = 743 ck3 = 5551 eu4 = 317 } # Nikaea, Mysia -> Hudavendigar
 	link = { autogenerated = yes ck3 = 741 ck3 = 5567 eu4 = 316 } # Bithynia, Tarsos -> Kocaeli
@@ -1943,11 +1943,11 @@
 	link = { autogenerated = yes ck3 = 5143 eu4 = 311 } # Rusa -> Kholm
 	link = { autogenerated = yes ck3 = 3564 ck3 = 3557 ck3 = 3581 eu4 = 3002 } # Vrhbosna, Zelengora, Podrinje -> Visoki
 	link = { autogenerated = yes ck3 = 311 ck3 = 307 ck3 = 309 ck3 = 314 ck3 = 332 eu4 = 3 } # Njudung, Möre, Sevede, Öland, Kinda -> Kalmar
-	link = { autogenerated = yes ck3 = 3192 eu4 = 2997 } # Swiecie -> Tuchola
-	link = { autogenerated = yes ck3 = 2806 eu4 = 2996 } # Mecklenburg -> Wismar
-	link = { autogenerated = yes ck3 = 3160 eu4 = 2993 } # Prenzlau -> Uckermark
+	link = { autogenerated = yes ck3 = 3192 ck3 = 3194 ck3 = 3196 eu4 = 2997 } # Swiecie -> Tuchola
+	link = { autogenerated = yes ck3 = 2806 ck3 = 2807 eu4 = 2996 } # Mecklenburg -> Wismar
+	link = { autogenerated = yes ck3 = 3160 ck3 = 3155 eu4 = 2993 } # Prenzlau -> Uckermark
 	link = { autogenerated = yes ck3 = 1810 ck3 = 1890 eu4 = 2989 } # Najera, Tudela -> Rioja
-	link = { autogenerated = yes ck3 = 2605 eu4 = 2985 } # Foggia -> Capitanata
+	link = { autogenerated = yes ck3 = 2605 ck3 = 2610 eu4 = 2985 } # Foggia -> Capitanata
 	link = { autogenerated = yes ck3 = 2430 eu4 = 2973 eu4 = 56 } # Tecklenburg -> Meppen, Osnabruck
 	link = { autogenerated = yes ck3 = 2837 eu4 = 2971 } # Minden -> Hoya
 	link = { autogenerated = yes ck3 = 3142 ck3 = 3153 eu4 = 2969 } # Lubusz, Cedynia -> Sternberg
@@ -1955,10 +1955,10 @@
 	link = { autogenerated = yes ck3 = 4132 eu4 = 2967 } # atec -> Eger
 	link = { autogenerated = yes ck3 = 3065 ck3 = 3064 ck3 = 3066 eu4 = 2966 } # Schweibus, Grunberg, Sprottau -> Glogau
 	link = { autogenerated = yes ck3 = 2899 ck3 = 2894 eu4 = 2964 } # Stendal, Dannenberg -> Altmark
-	link = { autogenerated = yes ck3 = 4915 eu4 = 2963 } # Krajna -> Notec
+	link = { autogenerated = yes ck3 = 4915 ck3 = 4902 eu4 = 2963 } # Krajna -> Notec
 	link = { autogenerated = yes ck3 = 5212 eu4 = 296 } # Kozelsk -> Kaluga
 	link = { autogenerated = yes ck3 = 3200 eu4 = 2958 } # Sasna -> Osterode
-	link = { autogenerated = yes ck3 = 2966 eu4 = 2956 } # Hohenburg -> Straubing
+	link = { autogenerated = yes ck3 = 2966 ck3 = 2965 eu4 = 2956 } # Hohenburg -> Straubing
 	link = { autogenerated = yes ck3 = 6854 ck3 = 6845 ck3 = 6848 ck3 = 6858 ck3 = 6862 eu4 = 2932 } # Kadam, Fellata, Fitri, Salamat, Wadaï -> Wadai
 	link = { autogenerated = yes ck3 = 933 ck3 = 5127 eu4 = 292 } # Roslavl, Orsha -> Mogilev
 	link = { autogenerated = yes ck3 = 594 eu4 = 288 } # Golden Hills -> Lower Don
@@ -2001,7 +2001,7 @@
 	link = { autogenerated = yes ck3 = 11176 eu4 = 2715 eu4 = 4798 eu4 = 642 } # Luwu -> Palopo, Wajo, Kolaka
 	link = { autogenerated = yes ck3 = 11205 eu4 = 2714 } # Banawa -> Palu
 	link = { autogenerated = yes ck3 = 11143 eu4 = 2712 } # Martapura -> Samarinda
-	link = { autogenerated = yes ck3 = 115 ck3 = 123 eu4 = 271 } # Palanga, Raseiniai -> Samogitia
+	link = { autogenerated = yes ck3 = 115 ck3 = 123 ck3 = 126 eu4 = 271 } # Palanga, Raseiniai -> Samogitia
 	link = { autogenerated = yes ck3 = 127 eu4 = 4534 } # Siauliai -> Upita
 	link = { autogenerated = yes ck3 = 11151 eu4 = 2709 eu4 = 2710 eu4 = 2711 } # Berau -> Tarakan, Sambaliung, Bulungan
 	link = { autogenerated = yes ck3 = 11126 eu4 = 2706 } # Waringin -> Katapang
@@ -2352,10 +2352,10 @@
 	link = { autogenerated = yes ck3 = 7879 eu4 = 1946 } # Karahataka -> Satara
 	link = { autogenerated = yes ck3 = 5257 eu4 = 1943 } # Ladyzyn -> Bratslav
 	link = { autogenerated = yes ck3 = 104 eu4 = 1935 eu4 = 38 } # Semigallia -> Mitau, Riga
-	link = { autogenerated = yes ck3 = 2631 eu4 = 1934 } # Camarda -> Lucania
+	link = { autogenerated = yes ck3 = 2631 ck3 = 8754 ck3 = 2617 eu4 = 1934 } # Camarda -> Lucania
 	link = { autogenerated = yes ck3 = 12782 ck3 = 12779 eu4 = 1925 } # Mto Galana, Mto Tana -> Tana
 	link = { autogenerated = yes ck3 = 443 ck3 = 210 ck3 = 213 eu4 = 19 } # Oulu, Pietarsaari, Mustasaari -> Osterbotten
-	link = { autogenerated = yes ck3 = 2078 ck3 = 2079 ck3 = 2192 ck3 = 2710 eu4 = 189 } # Nancy, Vaucouleurs, Neufchâteau, Puttlingen -> Lothringen
+	link = { autogenerated = yes ck3 = 2078 ck3 = 2079 ck3 = 2192 ck3 = 2710 ck3 = 2384 eu4 = 189 } # Nancy, Vaucouleurs, Neufchâteau, Puttlingen -> Lothringen
 	link = { autogenerated = yes ck3 = 2302 ck3 = 2347 ck3 = 2349 eu4 = 1877 } # Mâcon, Chalon, Avalois -> Charolais
 	link = { autogenerated = yes ck3 = 2052 eu4 = 1873 eu4 = 4722 } # Grisons -> Chur, Illanz
 	link = { autogenerated = yes ck3 = 2038 eu4 = 1871 } # Aosta -> Wallis
@@ -2402,7 +2402,7 @@
 	link = { autogenerated = yes ck3 = 82 eu4 = 15 } # Ringkøbing -> Vestjylland
 	link = { autogenerated = yes ck3 = 491 ck3 = 3781 ck3 = 490 eu4 = 148 } # Chalkidike, Veria, Thessalonika -> Macedonia
 	link = { autogenerated = yes ck3 = 478 eu4 = 145 } # Laconia -> Morea
-	link = { autogenerated = yes ck3 = 472 eu4 = 142 } # Buthrotum -> Corfu
+	link = { autogenerated = yes ck3 = 472 ck3 = 3710 eu4 = 142 } # Buthrotum -> Corfu
 	link = { autogenerated = yes ck3 = 3598 eu4 = 141 } # umadija -> Smederevo
 	link = { autogenerated = yes ck3 = 463 ck3 = 3515 ck3 = 504 eu4 = 140 } # Usora, Vrbas, Rama -> Bosnia
 	link = { autogenerated = yes ck3 = 3500 ck3 = 466 eu4 = 139 } # Zavrje, Zachlumia -> Hum
@@ -2478,5 +2478,15 @@
 	link = { autogenerated = yes ck3 = 10645 ck3 = 10643 eu4 = 1015 } # Ucinaa, Amami -> Okinawa
 	link = { ck3 = 341 ck3 = 336 eu4 = 1 } # Uppland, Södermannaland -> Stockholm
 	link = { ck3 = 6473 ck3 = 6475 ck3 = 6480 ck3 = 6476 eu4 = 1111 } # Tiris, Azukki, Amatlus, Wadan -> Arguin
+	# CK3 1.20 additions: counties missing from the old mappings
+	link = { ck3 = 2794 eu4 = 4771 } # verden
+	link = { ck3 = 2804 eu4 = 45 } # lubeck
+	link = { ck3 = 2801 eu4 = 1775 } # kiel
+	link = { ck3 = 2636 eu4 = 4736 } # trapani
+	link = { ck3 = 2531 eu4 = 101 } # luni
+	link = { ck3 = 2811 eu4 = 4745 } # rugen
+	link = { ck3 = 107 eu4 = 1935 } # mezotne
+	link = { ck3 = 108 eu4 = 38 } # riga
+	link = { ck3 = 2455 eu4 = 205 } # savoie
 	link = { eu4 = 4155 eu4 = 4156 eu4 = 2334 eu4 = 1795 eu4 = 1794 eu4 = 1793 eu4 = 4154 eu4 = 4161 eu4 = 4162 eu4 = 4160 eu4 = 4763 eu4 = 4159 eu4 = 4169 eu4 = 4569 eu4 = 4167 eu4 = 4168 eu4 = 2251 eu4 = 1796 eu4 = 1798 eu4 = 1799 eu4 = 4322 eu4 = 4321 eu4 = 1779 eu4 = 4276 eu4 = 4179 eu4 = 4172 eu4 = 4177 eu4 = 4170 eu4 = 2200 eu4 = 1785 eu4 = 1787 eu4 = 2129 eu4 = 4522 eu4 = 1786 eu4 = 1784 eu4 = 1788 eu4 = 4402 eu4 = 2194 eu4 = 4401 eu4 = 4844 eu4 = 4843 eu4 = 4808 eu4 = 2740 eu4 = 4807 eu4 = 1789 eu4 = 4657 eu4 = 4403 eu4 = 1654 eu4 = 2425 eu4 = 2426 eu4 = 1781 eu4 = 1782 eu4 = 1783 eu4 = 1327 eu4 = 1653 eu4 = 4178 eu4 = 4137 eu4 = 4136 eu4 = 4138 eu4 = 1326 eu4 = 1261 eu4 = 1262 eu4 = 1325 eu4 = 4235 eu4 = 4157 eu4 = 4146 eu4 = 4153 eu4 = 2953 eu4 = 1977 eu4 = 1250 eu4 = 1251 eu4 = 1883 eu4 = 1885 eu4 = 1884 eu4 = 4139 eu4 = 1260 eu4 = 1891 eu4 = 1976 eu4 = 1899 eu4 = 1648 eu4 = 4328 eu4 = 1888 eu4 = 4400 eu4 = 1950 eu4 = 3593 eu4 = 3595 eu4 = 3594 eu4 = 3592 } # NOTHING -> The Carpathians, The Caucasus, Badiyat ash Sham, East Sahara, Central Sahara, El Djouf, The Pyrenees, The Alps, The Alps, The Alps, The Alps, The Alps, Aures, High Atlas, High Atlas, High Atlas, Guinea, Central Africa, Imatong, Urgoma, Egyptian Desert, Egyptian Desert, Rub' al Khali, Jabal Tubaiq, Hakkari Mountains, Zagros, Alborz, Zagros, Suleiman Range, Pamir, Himalaya, Changtang, Aqenganggyai, Takla Makan, Tian Shan, Arunachal, Gaoligong Mountains, Qilian, Arakan Mountains, Dawna Hills, Annamite Mountains, Sumatra, Borneo, North Borneo, Papua, Changbai Mountains, Hengduan Mountains, Lake Bajkal, Nenets, Yamal, Western Siberia, Central Siberia, Eastern Siberia, Aral Sea, Lake Balchasj, Pontic Mountains, Alakol, Zaysan, Issyk-Kul, Caspian Sea, Ladoga, Onega, Lake Balaton, Vistula Lagoon, The Alps, Langfjella, The Scandes, Hjalmaren, Malaren, Vanern, Vattern, Western Finnish Lakes, Central Finnish Lakes, East Finnish Lakes, Oulujarvi, Lake Peipus, Lake Tuz, Dead Sea, Tana Lake, Lake Chad, Chagai, Kara Sea, Naga Hills, Meghalaya, Kunlun Shan, The Caucasus, Thar Desert, Hindu Kush
 } #EU4 Impassables and lakes
