@@ -74,6 +74,7 @@ void CK3::LandedTitles::linkProvinceHoldings(const ProvinceHoldings& provinceHol
 {
 	// We're linking provinces into BARONY titles only, as other titles have no holding data.
 	auto counter = 0;
+	auto missing = 0;
 	const auto& provinceData = provinceHoldings.getProvinceHoldings();
 	for (const auto& landedTitle: foundTitles)
 	{
@@ -90,11 +91,16 @@ void CK3::LandedTitles::linkProvinceHoldings(const ProvinceHoldings& provinceHol
 		}
 		else
 		{
-			throw std::runtime_error("Landed title " + landedTitle.first + " has province holding " + std::to_string(landedTitle.second->getProvince()->first) +
-											 " which has no definition!");
+			// Baronies added by a newer game version or a mod may be absent from an older save. Treat them as having no holding.
+			++missing;
+			if (missing <= 20)
+				Log(LogLevel::Warning) << "Landed title " << landedTitle.first << " has province holding " << landedTitle.second->getProvince()->first
+											  << " which has no definition in the save game. Ignoring it.";
 		}
 	}
 	Log(LogLevel::Info) << "<> " << counter << " landed titles updated.";
+	if (missing > 0)
+		Log(LogLevel::Warning) << "<> " << missing << " baronies have no province data in the save and were ignored.";
 }
 
 void CK3::LandedTitles::linkCountyDetails(const CountyDetails& countyDetails)
