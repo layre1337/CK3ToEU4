@@ -1277,7 +1277,29 @@ void EU4::Country::assignReforms(const std::shared_ptr<mappers::RegionMapper>& r
 	// REPUBLICS
 	if (details.government == "republic")
 	{
-		// No republic laws for now. Waiting for a DLC to bring some.
+		// CK3 republic types (Communal, Maritime, Civic, Noble, Popular, Roman) are laws; the exact key names are matched loosely.
+		static const std::vector<std::pair<std::string, std::string>> republicTypes = {{"communal", "united_cantons_reform"},
+			 {"maritime", "merchants_reform"},
+			 {"civic", "civic_republicanism_government"},
+			 {"noble", "noble_elite_reform"},
+			 {"popular", "peasants_republic"},
+			 {"roman", "roman_republic_government"}};
+		for (const auto& law: details.holder->getCharacterDomain()->getLaws())
+		{
+			if (law.find("republic_type") == std::string::npos && law.find("republic") == std::string::npos)
+				continue;
+			bool found = false;
+			for (const auto& [key, reform]: republicTypes)
+				if (law.find(key) != std::string::npos)
+				{
+					details.reforms.clear();
+					details.reforms = {reform};
+					found = true;
+					break;
+				}
+			if (found)
+				break;
+		}
 		// Mercs
 		if (details.holder->getCharacterDomain()->getLaws().count("mercenary_company_succession_law"))
 		{
