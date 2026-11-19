@@ -42,6 +42,7 @@ class World: commonItems::parser
 	[[nodiscard]] const auto& getMods() const { return mods; }
 	[[nodiscard]] const auto& getTitles() const { return titles; }
 	[[nodiscard]] const auto& getFaiths() const { return faiths; }
+	[[nodiscard]] const auto& getCountyDetails() const { return countyDetails; }
 	[[nodiscard]] const auto& getHRETitle() const { return hreTitle; }
 	[[nodiscard]] auto doesIslamExist() const { return islamExists; }
 	[[nodiscard]] auto isCoADesignerEnabled() const { return coaDesigner; }

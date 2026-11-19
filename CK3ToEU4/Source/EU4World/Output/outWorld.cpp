@@ -5,6 +5,8 @@
 #include "CommonFunctions.h"
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
+#include <iomanip>
+#include <algorithm>
 #include <filesystem>
 #include <fstream>
 #include "../../Mappers/RussianLocMapper/RussianLocMapper.h"
@@ -94,6 +96,7 @@ void EU4::World::output(const commonItems::ConverterVersion& converterVersion,
 	Log(LogLevel::Info) << "<- Writing Religions";
 	outputReligions(theConfiguration.getOutputName(), religionMapper.getGeneratedReligions(), religionMapper.getReformedReligions());
 	outputChurchEstate(theConfiguration, religionMapper.getGeneratedReligions());
+	outputChalcedonianCatholicism(theConfiguration);
 
 	Log(LogLevel::Info) << "<- Writing Cultures";
 	outputCultures(theConfiguration.getOutputName());
@@ -138,12 +141,179 @@ void EU4::World::output(const commonItems::ConverterVersion& converterVersion,
 	Log(LogLevel::Progress) << "95 %";
 
 	Log(LogLevel::Info) << "<- Writing Religion Icons";
-	outputReligionIcons(theConfiguration, religionMapper.getGeneratedReligions(), sourceWorld.getMods());
+	auto iconReligions = religionMapper.getGeneratedReligions();
+	if (religionMapper.getChalcedonian())
+		iconReligions.emplace_back(*religionMapper.getChalcedonian()); // catholicism's new icon goes last, as its icon index was assigned last.
+	outputReligionIcons(theConfiguration, iconReligions, sourceWorld.getMods());
 	Log(LogLevel::Progress) << "96 %";
 
 	Log(LogLevel::Info) << "<- Replacing Bookmark";
 	outputBookmark(theConfiguration, conversionDate);
 	Log(LogLevel::Progress) << "97 %";
+}
+
+namespace
+{
+// Returns the position just after the brace that closes the block opened by the first '{' at or after 'open'.
+size_t findBlockEnd(const std::string& text, size_t open)
+{
+	auto depth = 0;
+	for (auto i = text.find('{', open); i != std::string::npos && i < text.size(); ++i)
+	{
+		if (text[i] == '{')
+			++depth;
+		else if (text[i] == '}' && --depth == 0)
+			return i + 1;
+	}
+	return std::string::npos;
+}
+
+// Finds a block with a given header, e.g. "\tcatholic = {" (must start a line). Returns {start, end} or {npos, npos}.
+std::pair<size_t, size_t> findBlock(const std::string& text, const std::string& header, size_t from = 0)
+{
+	auto pos = text.find("\n" + header, from);
+	if (pos == std::string::npos)
+		return {std::string::npos, std::string::npos};
+	++pos; // skip the newline
+	return {pos, findBlockEnd(text, pos)};
+}
+
+// Inner text of a block (between its braces).
+std::string blockInner(const std::string& text, std::pair<size_t, size_t> block)
+{
+	const auto open = text.find('{', block.first);
+	return text.substr(open + 1, block.second - 1 - open - 1);
+}
+
+// Parses simple "key = number" lines.
+std::vector<std::pair<std::string, double>> parseModifiers(const std::string& inner)
+{
+	std::vector<std::pair<std::string, double>> result;
+	std::istringstream in(inner);
+	std::string line;
+	while (std::getline(in, line))
+	{
+		const auto hash = line.find('#');
+		if (hash != std::string::npos)
+			line = line.substr(0, hash);
+		const auto eq = line.find('=');
+		if (eq == std::string::npos)
+			continue;
+		auto key = line.substr(0, eq);
+		auto value = line.substr(eq + 1);
+		key.erase(0, key.find_first_not_of(" \t"));
+		key.erase(key.find_last_not_of(" \t") + 1);
+		try
+		{
+			result.emplace_back(key, std::stod(value));
+		}
+		catch (const std::exception&)
+		{
+			// not a plain number, ignore.
+		}
+	}
+	return result;
+}
+
+// Merges the modifiers of the "from" block into the "into" block (summing equal keys); both are looked up by name inside a religion block text.
+void mergeModifierBlock(std::string& religion, const std::string& blockName, const std::string& donorReligion)
+{
+	const auto donorBlock = findBlock(donorReligion, "\t\t" + blockName + " = {");
+	if (donorBlock.first == std::string::npos)
+		return;
+	auto merged = parseModifiers(blockInner(donorReligion, donorBlock));
+	const auto ownBlock = findBlock(religion, "\t\t" + blockName + " = {");
+	if (ownBlock.first != std::string::npos)
+	{
+		auto ownModifiers = parseModifiers(blockInner(religion, ownBlock));
+		for (const auto& [key, value]: merged)
+		{
+			const auto itr = std::ranges::find_if(ownModifiers, [&key](const auto& m) {
+				return m.first == key;
+			});
+			if (itr != ownModifiers.end())
+				itr->second += value;
+			else
+				ownModifiers.emplace_back(key, value);
+		}
+		merged = ownModifiers;
+		religion.erase(ownBlock.first, ownBlock.second - ownBlock.first);
+	}
+	std::ostringstream out;
+	out << "\t\t" << blockName << " = {\n";
+	for (const auto& [key, value]: merged)
+		out << "\t\t\t" << key << " = " << std::setprecision(6) << value << "\n";
+	out << "\t\t}\n";
+	// Insert before the closing brace of the religion block.
+	const auto closing = religion.rfind('}');
+	religion.insert(closing, out.str());
+}
+} // namespace
+
+void EU4::World::outputChalcedonianCatholicism(const Configuration& theConfiguration) const
+{
+	const auto& chalcedonian = religionMapper.getChalcedonian();
+	if (!chalcedonian)
+		return;
+
+	const auto path = "output" / theConfiguration.getOutputName() / "common/religions/!-1_vanilla_religions.txt";
+	if (!commonItems::DoesFileExist(path))
+		throw std::runtime_error("Cannot open " + path.string() + " to convert the Chalcedonian church!");
+	std::ifstream input(path);
+	std::stringstream stream;
+	stream << input.rdbuf();
+	input.close();
+	auto text = stream.str();
+
+	const auto catholicBlock = findBlock(text, "\tcatholic = {");
+	const auto orthodoxBlock = findBlock(text, "\torthodox = {");
+	if (catholicBlock.first == std::string::npos || orthodoxBlock.first == std::string::npos)
+	{
+		Log(LogLevel::Warning) << "Could not find catholic and orthodox religions in the vanilla religion file. Chalcedonian church is left as catholic.";
+		return;
+	}
+	const auto orthodox = text.substr(orthodoxBlock.first, orthodoxBlock.second - orthodoxBlock.first);
+	auto catholic = text.substr(catholicBlock.first, catholicBlock.second - catholicBlock.first);
+
+	// Color and icon of the Chalcedonian faith.
+	if (chalcedonian->color)
+	{
+		std::ostringstream color;
+		color << "color " << *chalcedonian->color;
+		const auto colorPos = catholic.find("\t\tcolor =");
+		if (colorPos != std::string::npos)
+		{
+			const auto colorEnd = catholic.find('\n', colorPos);
+			catholic.replace(colorPos, colorEnd - colorPos, "\t\t" + color.str());
+		}
+	}
+	const auto iconPos = catholic.find("\t\ticon =");
+	if (iconPos != std::string::npos)
+	{
+		const auto iconEnd = catholic.find('\n', iconPos);
+		catholic.replace(iconPos, iconEnd - iconPos, "\t\ticon = " + std::to_string(chalcedonian->icon));
+	}
+
+	// Orthodox static bonuses are added to the catholic ones.
+	mergeModifierBlock(catholic, "country", orthodox);
+	mergeModifierBlock(catholic, "country_as_secondary", orthodox);
+	mergeModifierBlock(catholic, "province", orthodox);
+
+	// Orthodox mechanics: patriarchs, tolerance of other Christians and the icons.
+	std::string extras;
+	if (orthodox.find("has_patriarchs = yes") != std::string::npos)
+		extras += "\t\thas_patriarchs = yes\n";
+	if (orthodox.find("misguided_heretic = yes") != std::string::npos)
+		extras += "\t\tmisguided_heretic = yes\n";
+	if (const auto iconsBlock = findBlock(orthodox, "\t\torthodox_icons = {"); iconsBlock.first != std::string::npos)
+		extras += orthodox.substr(iconsBlock.first, iconsBlock.second - iconsBlock.first) + "\n";
+	catholic.insert(catholic.rfind('}'), extras);
+
+	text.replace(catholicBlock.first, catholicBlock.second - catholicBlock.first, catholic);
+	std::ofstream output(path);
+	output << text;
+	output.close();
+	Log(LogLevel::Info) << "<> Catholicism converted as the Chalcedonian church (orthodox bonuses, icons and patriarchs added).";
 }
 
 void EU4::World::outputReligionIcons(const Configuration& theConfiguration, const std::vector<GeneratedReligion>& generatedReligions, const Mods& mods) const
@@ -153,7 +323,7 @@ void EU4::World::outputReligionIcons(const Configuration& theConfiguration, cons
 
 	// edit interface file, raw search/replace.
 	const auto originalIcons = religionDefinitionMapper.getOriginalIconCount();
-	auto currentIcons = originalIcons + religionMapper.getGeneratedReligions().size();
+	auto currentIcons = originalIcons + generatedReligions.size();
 	if (!commonItems::DoesFileExist("output" / theConfiguration.getOutputName() / "interface/z_converter.gfx"))
 		throw std::runtime_error("Cannot open output/" + theConfiguration.getOutputName().string() + "/interface/z_converter.gfx");
 

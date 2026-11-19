@@ -10,6 +10,7 @@
 #include "Log.h"
 #include "OSCompatibilityLayer.h"
 #include "Province/EU4Province.h"
+#include <algorithm>
 #include <cmath>
 #include <filesystem>
 #include <fstream>
@@ -76,6 +77,18 @@ EU4::World::World(const CK3::World& sourceWorld, const Configuration& theConfigu
 	Log(LogLevel::Info) << "-> Importing Dynamic Faiths";
 	religionMapper.scrapeCK3Religions(CK3FS);
 	religionMapper.importCK3Faiths(sourceWorld.getFaiths(), religionDefinitionMapper, religionGroupScraper, localizationMapper);
+	// CK3 1.20: if the Christian church wasn't split, there are counties of the Chalcedonian faith on the map.
+	for (const auto& faith: sourceWorld.getFaiths().getFaiths() | std::views::values)
+	{
+		if (faith->getName() != "christian_faith")
+			continue;
+		const auto inUse = std::ranges::any_of(sourceWorld.getCountyDetails().getCountyDetails() | std::views::values, [&faith](const auto& county) {
+			return county->getFaith().second && county->getFaith().second->getID() == faith->getID();
+		});
+		if (inUse)
+			religionMapper.enableChalcedonian(*faith, religionDefinitionMapper);
+		break;
+	}
 	Log(LogLevel::Progress) << "54 %";
 
 	// We start conversion by importing vanilla eu4 countries, history and common sections included.

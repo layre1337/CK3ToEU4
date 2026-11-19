@@ -21,6 +21,7 @@ link = { eu4 = vajrayana ck3 = vajrayana ck3 = lamaism ck3 = mantrayana ck3 = ac
 # Christianity
 link = { eu4 = catholic religious_head = k_papal_state }
 link = { eu4 = catholic ck3 = conversos ck3 = catholic ck3 = mozarabic_church } # Fallback for old saves (pre 1.6.1.2)
+link = { eu4 = catholic ck3 = christian_faith } # CK3 1.20 Chalcedonian church (before the schism); gets orthodox bonuses on top, see ReligionMapper::enableChalcedonian
 link = { eu4 = orthodox religious_head = k_orthodox }
 link = { eu4 = orthodox ck3 = orthodox }
 link = { eu4 = coptic religious_head = d_coptic_papacy }

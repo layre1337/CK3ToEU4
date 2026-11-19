@@ -102,6 +102,30 @@ void mappers::ReligionMapper::importCK3Faiths(const CK3::Faiths& faiths,
 	}
 }
 
+void mappers::ReligionMapper::enableChalcedonian(const CK3::Faith& faith, ReligionDefinitionMapper& religionDefinitionMapper)
+{
+	if (chalcedonian)
+		return;
+	EU4::GeneratedReligion icons;
+	icons.name = "catholic";
+	icons.parent = "catholic";
+	icons.color = faith.getColor();
+	icons.iconPath = faith.getIconPath();
+	icons.icon = religionDefinitionMapper.getNextIcon();
+	chalcedonian = icons;
+
+	// Rename catholicism. Internally it stays "catholic".
+	const auto& displayName = faith.getCustomAdj();
+	LocBlock locBlock;
+	locBlock.english = displayName;
+	locBlock.french = displayName;
+	locBlock.german = displayName;
+	locBlock.spanish = displayName;
+	localizations.insert_or_assign("catholic", locBlock);
+	localizations.insert_or_assign("catholic_adj", locBlock);
+	Log(LogLevel::Info) << "The church was not split: catholicism is converted as " << faith.getName() << " with orthodox bonuses.";
+}
+
 void mappers::ReligionMapper::importCK3Faith(const CK3::Faith& faith,
 	 ReligionDefinitionMapper& religionDefinitionMapper,
 	 const ReligionGroupScraper& religionGroupScraper,

@@ -35,6 +35,9 @@ class ReligionMapper: commonItems::parser
 	[[nodiscard]] std::optional<std::string> getEU4SchoolForCK3Religion(const std::string& ck3Religion) const;
 	[[nodiscard]] const auto& getLocalizations() const { return localizations; }
 	[[nodiscard]] const auto& getGeneratedReligions() const { return generatedReligions; }
+	// If the church wasn't split (CK3 1.20 "christian_faith", Chalcedonianism), EU4 catholicism gets its name, color and icon plus orthodox bonuses.
+	void enableChalcedonian(const CK3::Faith& faith, ReligionDefinitionMapper& religionDefinitionMapper);
+	[[nodiscard]] const auto& getChalcedonian() const { return chalcedonian; }
 	[[nodiscard]] const auto& getReformedReligions() const { return reformedReligions; }
 	[[nodiscard]] const auto& getCK3ReligiousDoctrines() const { return CK3Doctrines; }
 
@@ -60,6 +63,7 @@ class ReligionMapper: commonItems::parser
 	std::map<std::string, LocBlock> localizations;
 
 	std::vector<EU4::GeneratedReligion> generatedReligions;
+	std::optional<EU4::GeneratedReligion> chalcedonian; // only carries the color and icon for catholicism
 	std::vector<std::string> reformedReligions;
 
 	std::map<std::string, std::vector<std::string>> CK3Doctrines; // Used for certain government reforms
