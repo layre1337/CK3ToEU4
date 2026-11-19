@@ -21,6 +21,7 @@
 #include "Geography/ProvinceHoldings.h"
 #include "ModLoader/ModLoader.h"
 #include "Parser.h"
+#include "Religions/Faith.h"
 #include "Religions/Faiths.h"
 #include "Religions/Religions.h"
 #include "Titles/LandedTitles.h"
@@ -106,6 +107,7 @@ class World: commonItems::parser
 	Mods mods;
 	Flags flags;
 	std::map<long long, long long> riteToFaith; // CK3 1.20: rite ID -> faith ID
+	std::map<long long, RiteDoctrines> riteDoctrines; // CK3 1.20: rite ID -> its core tenets and doctrines
 	CountyDetails countyDetails;
 	Cultures cultures;
 	HouseNameScraper houseNameScraper;

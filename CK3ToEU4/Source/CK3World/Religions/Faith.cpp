@@ -15,6 +15,10 @@ void CK3::Faith::registerKeys()
 	registerKeyword("tag", [this](const std::string& unused, std::istream& theStream) {
 		tag = commonItems::singleString(theStream).getString();
 	});
+	registerKeyword("tenet", [this](const std::string& unused, std::istream& theStream) {
+		// CK3 1.20 lists core tenets as separate tenet= entries (they were doctrine= entries before).
+		doctrines.emplace_back(commonItems::singleString(theStream).getString());
+	});
 	registerKeyword("doctrine", [this](const std::string& unused, std::istream& theStream) {
 		doctrines.emplace_back(commonItems::singleString(theStream).getString());
 	});

@@ -9,6 +9,11 @@ extern commonItems::Color::Factory laFabricaDeColor;
 namespace CK3
 {
 class Religion;
+struct RiteDoctrines
+{
+	std::vector<std::string> tenets;
+	std::vector<std::string> doctrines;
+};
 class Faith: commonItems::parser
 {
   public:
@@ -18,6 +23,7 @@ class Faith: commonItems::parser
 	[[nodiscard]] const auto& getName() const { return tag; }
 	[[nodiscard]] const auto& getColor() const { return color; }
 	[[nodiscard]] const auto& getDoctrines() const { return doctrines; }
+	[[nodiscard]] const auto& getRites() const { return rites; }
 	[[nodiscard]] const auto& getReligion() const { return religion; }
 	[[nodiscard]] const auto& getReligiousHead() const { return religiousHead; }
 	[[nodiscard]] auto getID() const { return ID; }
@@ -28,6 +34,8 @@ class Faith: commonItems::parser
 	[[nodiscard]] const auto& getIconPath() const { return iconPath; }
 	[[nodiscard]] const auto& getReformedFlag() const { return reformedFlag; }
 
+	// CK3 1.20: a faith may have several rites (currents), each with its own tenets and doctrines.
+	void addRite(const RiteDoctrines& rite) { rites.emplace_back(rite); }
 	void setReligiousHead(const auto& newHead) { religiousHead = newHead; }
 	void loadReligion(const std::pair<long long, std::shared_ptr<Religion>>& theReligion) { religion = theReligion; }
 
@@ -46,6 +54,7 @@ class Faith: commonItems::parser
 	std::optional<commonItems::Color> color;
 	std::vector<std::string>
 		 doctrines; // This is a vector in order to keep order consistent. We want the first things read (tenets) to be the first things output, ALWAYS
+	std::vector<RiteDoctrines> rites;
 	std::pair<long long, std::shared_ptr<Religion>> religion;
 };
 } // namespace CK3

@@ -7,6 +7,8 @@
 #include "Log.h"
 #include "ParserHelpers.h"
 #include "ReligionMapping.h"
+#include <algorithm>
+#include <set>
 
 mappers::ReligionMapper::ReligionMapper()
 {
@@ -15,6 +17,70 @@ mappers::ReligionMapper::ReligionMapper()
 	parseFile("configurables/religion_map.txt");
 	clearRegisteredKeywords();
 	Log(LogLevel::Info) << "<> Loaded " << CK3ToEU4ReligionMap.size() << " religious links.";
+	loadDoctrineGroups();
+}
+
+void mappers::ReligionMapper::loadDoctrineGroups()
+{
+	commonItems::parser groupParser;
+	groupParser.registerRegex(commonItems::catchallRegex, [this](const std::string& doctrine, std::istream& theStream) {
+		doctrineGroups.emplace(doctrine, commonItems::singleString(theStream).getString());
+	});
+	groupParser.parseFile("configurables/religions/dynamic/doctrine_groups.txt");
+}
+
+std::vector<std::string> mappers::ReligionMapper::mergeRiteDoctrines(const CK3::Faith& faith) const
+{
+	// A custom faith in CK3 1.20 can have several rites (currents), each with its own core tenets and doctrines. The converter makes a single EU4 religion
+	// out of them, so we merge: tenets from all rites are added (they never conflict), doctrines are added only if the faith doesn't already have a doctrine
+	// of the same group. The faith's own doctrines win, so the result stays consistent. Tenets come first: they are the most important and the bonus
+	// caps would otherwise drop them.
+	auto merged = faith.getDoctrines();
+	// Tenets are expected first, find the end of the leading tenet block.
+	size_t tenetEnd = 0;
+	while (tenetEnd < merged.size() && merged[tenetEnd].starts_with("tenet_"))
+		++tenetEnd;
+
+	std::set<std::string> present(merged.begin(), merged.end());
+	std::set<std::string> groupsPresent;
+	for (const auto& doctrine: merged)
+		if (const auto groupItr = doctrineGroups.find(doctrine); groupItr != doctrineGroups.end())
+			groupsPresent.insert(groupItr->second);
+
+	auto addedTenets = 0;
+	auto addedDoctrines = 0;
+	for (const auto& rite: faith.getRites())
+	{
+		for (const auto& tenet: rite.tenets)
+		{
+			if (present.contains(tenet))
+				continue;
+			merged.insert(merged.begin() + static_cast<std::ptrdiff_t>(tenetEnd), tenet);
+			++tenetEnd;
+			present.insert(tenet);
+			++addedTenets;
+		}
+	}
+	for (const auto& rite: faith.getRites())
+	{
+		for (const auto& doctrine: rite.doctrines)
+		{
+			if (present.contains(doctrine))
+				continue;
+			if (const auto groupItr = doctrineGroups.find(doctrine); groupItr != doctrineGroups.end())
+			{
+				if (groupsPresent.contains(groupItr->second))
+					continue; // conflicts with something the faith already has.
+				groupsPresent.insert(groupItr->second);
+			}
+			merged.emplace_back(doctrine);
+			present.insert(doctrine);
+			++addedDoctrines;
+		}
+	}
+	if (addedTenets || addedDoctrines)
+		Log(LogLevel::Info) << "Faith " << faith.getName() << ": merged " << addedTenets << " tenets and " << addedDoctrines << " doctrines from its other rites.";
+	return merged;
 }
 
 mappers::ReligionMapper::ReligionMapper(std::istream& theStream)
@@ -138,8 +204,9 @@ void mappers::ReligionMapper::importCK3Faith(const CK3::Faith& faith,
 	}
 	// rather have it empty than display raw key ingame.
 	localizations.insert(std::pair(faithName + "_religion_desc", descBlock));
-	// Doctrines Stored
-	CK3Doctrines.emplace(faithName, faith.getDoctrines());
+	// Doctrines Stored (including those of the faith's other rites)
+	const auto doctrines = mergeRiteDoctrines(faith);
+	CK3Doctrines.emplace(faithName, doctrines);
 
 	// Rebels
 	LocBlock rebelBlock;
@@ -228,7 +295,7 @@ void mappers::ReligionMapper::importCK3Faith(const CK3::Faith& faith,
 	short secondaryCount = 0;
 	short countryCount = 0;
 	bool noClergyEstate = false;
-	for (const auto& doctrine: faith.getDoctrines())
+	for (const auto& doctrine: doctrines)
 	{
 		if (doctrine == "doctrine_theocracy_lay_clergy")
 			noClergyEstate = true; // no dedicated clergy: this religion has no clergy estate in EU4

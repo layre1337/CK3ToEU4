@@ -213,14 +213,29 @@ void CK3::World::registerKeys(const std::shared_ptr<Configuration>& theConfigura
 			commonItems::parser dbParser;
 			dbParser.registerRegex(R"(\d+)", [this](const std::string& riteID, std::istream& riteStream) {
 				long long faithID = -1;
+				RiteDoctrines riteData;
 				commonItems::parser riteParser;
+				riteParser.registerKeyword("data", [&riteData](const std::string& unused4, std::istream& dataStream) {
+					commonItems::parser dataParser;
+					dataParser.registerKeyword("tenet", [&riteData](const std::string& unused5, std::istream& tenetStream) {
+						riteData.tenets.emplace_back(commonItems::singleString(tenetStream).getString());
+					});
+					dataParser.registerKeyword("doctrine", [&riteData](const std::string& unused5, std::istream& doctrineStream) {
+						riteData.doctrines.emplace_back(commonItems::singleString(doctrineStream).getString());
+					});
+					dataParser.registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
+					dataParser.parseStream(dataStream);
+				});
 				riteParser.registerKeyword("faith", [&faithID](const std::string& unused3, std::istream& faithStream) {
 					faithID = commonItems::singleLlong(faithStream).getLlong();
 				});
 				riteParser.registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
 				riteParser.parseStream(riteStream);
 				if (faithID >= 0 && faithID != 4294967295)
+				{
 					riteToFaith.emplace(std::stoll(riteID), faithID);
+					riteDoctrines.emplace(std::stoll(riteID), riteData);
+				}
 			});
 			dbParser.registerRegex(commonItems::catchallRegex, commonItems::ignoreItem);
 			dbParser.parseStream(dbStream);
@@ -438,6 +453,13 @@ void CK3::World::crosslinkDatabases()
 	if (!riteToFaith.empty())
 	{
 		Log(LogLevel::Info) << "-> Resolving Rites into Faiths.";
+		for (const auto& [riteID, faithID]: riteToFaith)
+		{
+			const auto faithItr = faiths.getFaiths().find(faithID);
+			const auto riteItr = riteDoctrines.find(riteID);
+			if (faithItr != faiths.getFaiths().end() && riteItr != riteDoctrines.end())
+				faithItr->second->addRite(riteItr->second);
+		}
 		for (const auto& countyDetail: countyDetails.getCountyDetails() | std::views::values)
 			countyDetail->resolveRite(riteToFaith);
 		for (const auto& character: characters.getCharacters() | std::views::values)
