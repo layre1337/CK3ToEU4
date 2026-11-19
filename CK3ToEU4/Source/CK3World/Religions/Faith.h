@@ -23,7 +23,6 @@ class Faith: commonItems::parser
 	[[nodiscard]] const auto& getName() const { return tag; }
 	[[nodiscard]] const auto& getColor() const { return color; }
 	[[nodiscard]] const auto& getDoctrines() const { return doctrines; }
-	[[nodiscard]] const auto& getRites() const { return rites; }
 	[[nodiscard]] const auto& getReligion() const { return religion; }
 	[[nodiscard]] const auto& getReligiousHead() const { return religiousHead; }
 	[[nodiscard]] auto getID() const { return ID; }
@@ -34,8 +33,16 @@ class Faith: commonItems::parser
 	[[nodiscard]] const auto& getIconPath() const { return iconPath; }
 	[[nodiscard]] const auto& getReformedFlag() const { return reformedFlag; }
 
-	// CK3 1.20: a faith may have several rites (currents), each with its own tenets and doctrines.
-	void addRite(const RiteDoctrines& rite) { rites.emplace_back(rite); }
+	[[nodiscard]] auto getMainRite() const { return mainRite; }
+	// CK3 1.20: a faith may have several rites (currents) with their own tenets and doctrines. The main rite defines the faith for the converter.
+	// Tenets always come first.
+	void useMainRiteDoctrines(const RiteDoctrines& rite)
+	{
+		std::vector<std::string> newDoctrines = rite.tenets;
+		newDoctrines.insert(newDoctrines.end(), rite.doctrines.begin(), rite.doctrines.end());
+		if (!newDoctrines.empty())
+			doctrines = newDoctrines;
+	}
 	void setReligiousHead(const auto& newHead) { religiousHead = newHead; }
 	void loadReligion(const std::pair<long long, std::shared_ptr<Religion>>& theReligion) { religion = theReligion; }
 
@@ -54,7 +61,7 @@ class Faith: commonItems::parser
 	std::optional<commonItems::Color> color;
 	std::vector<std::string>
 		 doctrines; // This is a vector in order to keep order consistent. We want the first things read (tenets) to be the first things output, ALWAYS
-	std::vector<RiteDoctrines> rites;
+	std::optional<long long> mainRite;
 	std::pair<long long, std::shared_ptr<Religion>> religion;
 };
 } // namespace CK3

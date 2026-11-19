@@ -44,8 +44,6 @@ class ReligionMapper: commonItems::parser
 		 ReligionDefinitionMapper& religionDefinitionMapper,
 		 const ReligionGroupScraper& religionGroupScraper,
 		 const LocalizationMapper& localizationMapper);
-	void loadDoctrineGroups();
-	[[nodiscard]] std::vector<std::string> mergeRiteDoctrines(const CK3::Faith& faith) const;
 	void createPersonalDeities(const std::string& parentReligion, const short deityCount);
 
 	typedef struct eu4ReligionStruct
@@ -54,8 +52,6 @@ class ReligionMapper: commonItems::parser
 		std::optional<std::string> eu4school;
 		std::optional<std::string> religiousHead;
 	} eu4ReligionStruct;
-
-	std::map<std::string, std::string> doctrineGroups; // doctrine -> doctrine group, used to merge rites of one faith without conflicts
 
 	short deityCount = 0; // Keeps track of how many personal deity files are created.
 

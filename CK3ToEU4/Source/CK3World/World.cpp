@@ -453,13 +453,11 @@ void CK3::World::crosslinkDatabases()
 	if (!riteToFaith.empty())
 	{
 		Log(LogLevel::Info) << "-> Resolving Rites into Faiths.";
-		for (const auto& [riteID, faithID]: riteToFaith)
-		{
-			const auto faithItr = faiths.getFaiths().find(faithID);
-			const auto riteItr = riteDoctrines.find(riteID);
-			if (faithItr != faiths.getFaiths().end() && riteItr != riteDoctrines.end())
-				faithItr->second->addRite(riteItr->second);
-		}
+		// The main rite of a faith defines its tenets and doctrines; the other rites don't affect the converted religion.
+		for (const auto& faith: faiths.getFaiths() | std::views::values)
+			if (faith->getMainRite())
+				if (const auto riteItr = riteDoctrines.find(*faith->getMainRite()); riteItr != riteDoctrines.end())
+					faith->useMainRiteDoctrines(riteItr->second);
 		for (const auto& countyDetail: countyDetails.getCountyDetails() | std::views::values)
 			countyDetail->resolveRite(riteToFaith);
 		for (const auto& character: characters.getCharacters() | std::views::values)
